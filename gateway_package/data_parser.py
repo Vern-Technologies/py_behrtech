@@ -48,7 +48,7 @@ class Parser:
         :param file_name: The name of the file for the data of the class to be outputted to
         """
 
-        text_file = open(file_name + ".json", "w")
+        text_file = open("Outputs/" + file_name + ".json", "w")
         text_file.write(self.data)
 
         text_file.close()
