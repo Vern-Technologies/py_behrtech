@@ -73,7 +73,7 @@ Server by closing your terminal.
 
 ## Updating To New Package Version
 
-1. To implement a new version of the Gateway APIs package, you just need to replace to file in your packages directory
+1. To implement a new version of the Gateway APIs package, you just need to replace the files in your packages directory
 with the new file from the dist directory in the repo and relaunch your PyPI server.
 
 2. Then re-install the package in PyCharm and your good to go.
