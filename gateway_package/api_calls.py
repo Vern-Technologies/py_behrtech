@@ -9,9 +9,6 @@ class ApiCall:
     def __init__(self):
         self.login_info = {}
         self.server_address = ""
-        self.humidity_thresholds = {}
-        self.pressure_thresholds = {}
-        self.temperature_thresholds = {}
         self.sensor_list = {}
 
     def set_login_info(self, user, password):
@@ -51,47 +48,6 @@ class ApiCall:
         """
 
         return self.server_address
-
-    # TODO: verify that the humidity, pressure, and temperature functions are necessary. Not needed to pull messages
-    #  from the gateway, may need to become their own class.
-    def set_humidity_thresholds(self, minimal, low_error, low_warning, high_warning, high_error, maximal):
-
-        self.humidity_thresholds["minimal"] = minimal
-        self.humidity_thresholds["low_error"] = low_error
-        self.humidity_thresholds["low_warning"] = low_warning
-        self.humidity_thresholds["high_warning"] = high_warning
-        self.humidity_thresholds["high_error"] = high_error
-        self.humidity_thresholds["maximal"] = maximal
-
-    def get_humidity_thresholds(self):
-
-        return self.humidity_thresholds
-
-    def set_pressure_thresholds(self, minimal, low_error, low_warning, high_warning, high_error, maximal):
-
-        self.pressure_thresholds["minimal"] = minimal
-        self.pressure_thresholds["low_error"] = low_error
-        self.pressure_thresholds["low_warning"] = low_warning
-        self.pressure_thresholds["high_warning"] = high_warning
-        self.pressure_thresholds["high_error"] = high_error
-        self.pressure_thresholds["maximal"] = maximal
-
-    def get_pressure_thresholds(self):
-
-        return self.pressure_thresholds
-
-    def set_temperature_thresholds(self, minimal, low_error, low_warning, high_warning, high_error, maximal):
-
-        self.temperature_thresholds["minimal"] = minimal
-        self.temperature_thresholds["low_error"] = low_error
-        self.temperature_thresholds["low_warning"] = low_warning
-        self.temperature_thresholds["high_warning"] = high_warning
-        self.temperature_thresholds["high_error"] = high_error
-        self.temperature_thresholds["maximal"] = maximal
-
-    def get_temperature_thresholds(self):
-
-        return self.temperature_thresholds
 
     def set_sensor_list(self, sensor_list: dict):
         """
