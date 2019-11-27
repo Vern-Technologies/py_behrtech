@@ -4,7 +4,9 @@ gateway_package/api_calls.py
 gateway_package/bokeh_plots.py
 gateway_package/setup.py
 gateway_package/Parsers/EnvSensor.py
+gateway_package/Parsers/Ir3V3Sensor.py
 gateway_package/Parsers/Ir3v3Sensor.py
+gateway_package/Parsers/Ir5VSensor.py
 gateway_package/Parsers/Parser.py
 gateway_package/Parsers/Synaptic.py
 gateway_package/Parsers/__init__.py
