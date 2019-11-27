@@ -2,7 +2,7 @@ from gateway_package.Parsers.Parser import Parser
 import json
 
 
-class Ir3V3Sensor(Parser):
+class Ir5VSensor(Parser):
     """
     Is a class for breaking the data of a IrThermo 3v3 Sensor returned from a gateway computer from BehrTech into usable
     components
