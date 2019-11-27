@@ -14,7 +14,7 @@ class Parser:
 
     def set_data_message(self, message):
         """
-        Sets the data of the class form the message query of the gateway computer
+        Sets the data of the class from the message query of the gateway computer
 
         :param message: Is the data returned from querying the gateway computer
         """
@@ -63,7 +63,6 @@ class Parser:
         """
 
         user_data = []
-        count = 0
         data = json.loads(self.data)
         messages = data.get("messages")
 
@@ -76,11 +75,9 @@ class Parser:
                     data = json.loads(check)
 
                     if "message" not in data.keys():
+                        data["time"] = x.get("time")
+                        data["sensorID"] = x.get("epEui")
                         user_data.append(data)
-                        user_data[count]["time"] = x.get("time")
-                        user_data[count]["sensorID"] = x.get("epEui")
-
-                        count += 1
 
         return user_data
 
@@ -129,6 +126,47 @@ class Parser:
 
         return time_info
 
+    def get_message_data_in_date_range(self, start: datetime, end: datetime):
+        """
+        Sources all the data of the class to retrieve all sensor data for a message including a time stamp and
+        sensor ID that is within the specified date range
+
+        :param start: Lowest date of date range
+        :param end: Highest date of date range
+        :return: All sensor data for each message as a list
+        """
+
+        user_data = []
+        data = json.loads(self.data)
+        messages = data.get("messages")
+
+        for x in messages:
+            if x.get("command") == "rxData":
+
+                time = x.get("time")
+
+                if time:
+                    time_split = time.strip("Z").split("T")
+                    new_time = f"{time_split[0]} {time_split[1]}"
+
+                    message_time = datetime.strptime(new_time, '%Y-%m-%d %H:%M:%S')
+
+                    if start <= message_time <= end:
+                        check = x.get("userDataJSON")
+
+                        if check:
+                            data = json.loads(check)
+
+                            if "message" not in data.keys():
+                                data["time"] = x.get("time")
+                                data["sensorID"] = x.get("epEui")
+                                user_data.append(data)
+
+                    elif message_time < start:
+                        break
+
+        return user_data
+
     def get_date_ranges(self):
         """
         Sources all the data of the class to retrieve the date range of the data of the class
@@ -139,3 +177,54 @@ class Parser:
         time = self.get_message_datetime_as_str()
 
         return {"Recent": time[0]["date"], "Oldest": time[-1]["date"]}
+
+    def get_message_id(self):
+        """
+        Sources all the data of the class to retrieve the id for each message
+
+        :return: The id of each message as a list
+        """
+
+        ids = []
+        data = json.loads(self.data)
+        messages = data.get("messages")
+
+        for x in messages:
+            if x.get("command") == "rxData":
+
+                check = x.get("_id")
+
+                if check:
+                    ids.append(check)
+
+        return ids
+
+    def get_message_data_for_id(self, id_number):
+        """
+        Sources all the data of the class to retrieve all sensor data for a message including a time stamp and
+        sensor ID that matches the requested id number
+
+        :param id_number: The id number of the message that data is being requested for
+        :return: The data of the message requested for as a dictionary
+        """
+
+        data = json.loads(self.data)
+        messages = data.get("messages")
+
+        for x in messages:
+            if x.get("command") == "rxData":
+
+                check_id = x.get("_id")
+
+                if check_id:
+                    if check_id == id_number:
+
+                        check_data = x.get("userDataJSON")
+
+                        if check_data:
+                            data = json.loads(check_data)
+
+                            if "message" not in data.keys():
+                                data["time"] = x.get("time")
+                                data["sensorID"] = x.get("epEui")
+                                return data
