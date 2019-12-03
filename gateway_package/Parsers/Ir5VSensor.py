@@ -30,7 +30,7 @@ class Ir5VSensor(Parser):
                 if check:
                     data = json.loads(check)
 
-                    if "message" not in data.keys():
+                    if "message" not in data.keys() and "Temperature" in data.keys():
                         temperature.append(data["Temperature"])
 
         return temperature

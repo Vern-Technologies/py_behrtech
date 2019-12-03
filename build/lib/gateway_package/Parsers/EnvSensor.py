@@ -30,7 +30,7 @@ class EnvSensor(Parser):
                 if check:
                     data = json.loads(check)
 
-                    if "message" not in data.keys():
+                    if "message" not in data.keys() and "Gas Resistance" in data.keys():
                         resistances.append(data["Gas Resistance"])
 
         return resistances
@@ -54,7 +54,7 @@ class EnvSensor(Parser):
                 if check:
                     data = json.loads(check)
 
-                    if "message" not in data.keys():
+                    if "message" not in data.keys() and "Pressure" in data.keys():
                         pressures.append(data["Pressure"])
 
         return pressures
@@ -78,7 +78,7 @@ class EnvSensor(Parser):
                 if check:
                     data = json.loads(check)
 
-                    if "message" not in data.keys():
+                    if "message" not in data.keys() and "Humidity" in data.keys():
                         humidity.append(data["Humidity"])
 
         return humidity
@@ -102,7 +102,7 @@ class EnvSensor(Parser):
                 if check:
                     data = json.loads(check)
 
-                    if "message" not in data.keys():
+                    if "message" not in data.keys() and "Temperature" in data.keys():
                         temperature.append(data["Temperature"])
 
         return temperature
