@@ -10,6 +10,10 @@ class Synaptic(Parser):
 
     def __init__(self):
         Parser.__init__(self)
+        self.sens_options = ["Pressure", "Humidity", "Temperature", "Orientation"]
+
+    def get_sens_options(self):
+        return self.sens_options
 
     def get_message_pressure(self):
         """
@@ -83,3 +87,26 @@ class Synaptic(Parser):
 
         return temperature
 
+    def get_message_orientation(self):
+        """
+        Sources all the data of the class to retrieve the orientation for each message
+
+        :return: The orientation for each message as a list
+        """
+
+        orientation = []
+        data = json.loads(self.data)
+        messages = data.get("messages")
+
+        for x in messages:
+            if x.get("command") == "rxData":
+
+                check = x.get("userDataJSON")
+
+                if check:
+                    data = json.loads(check)
+
+                    if "message" not in data.keys() and "Orientation" in data.keys():
+                        orientation.append(f"{data['Temperature']:0.2f}")
+
+        return orientation
