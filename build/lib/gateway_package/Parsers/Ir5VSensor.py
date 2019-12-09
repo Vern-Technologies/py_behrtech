@@ -10,6 +10,10 @@ class Ir5VSensor(Parser):
 
     def __init__(self):
         Parser.__init__(self)
+        self.sens_options = ["Temperature"]
+
+    def get_sens_options(self):
+        return self.sens_options
 
     def get_message_temperature(self):
         """

@@ -10,6 +10,10 @@ class EnvSensor(Parser):
 
     def __init__(self):
         Parser.__init__(self)
+        self.sens_options = ["Gas Resistance", "Pressure", "Humidity", "Temperature"]
+
+    def get_sens_options(self):
+        return self.sens_options
 
     def get_message_gas_resistance(self):
         """
