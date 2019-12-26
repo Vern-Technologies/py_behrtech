@@ -11,8 +11,8 @@ def bokeh_line_graph(data_x, data_y, x_axis, y_axis, title, line_data):
     :param y_axis: The label name for the Y axis of the graph
     :param title: The title of the graph
     :param line_data: Config setup for each line in the line graph, is a list of dictionaries
-            Example config: line_data[{color: 'navy', line_width: 2, legend_label: 'Sensor1'},
-                                      {color: 'turquoise', line_width: 2, legend_label: 'Sensor3'}]
+            Example config: line_data[{color: 'navy', legend_label: 'Sensor1'},
+                                      {color: 'turquoise', legend_label: 'Sensor3'}]
     :return: The bokeh generated line graph
     """
 
@@ -34,7 +34,7 @@ def bokeh_line_graph(data_x, data_y, x_axis, y_axis, title, line_data):
 
     for index in range(len(data_x)):
         f_plot.line(data_x[index], data_y[index], color=line_data[index]['color'],
-                    line_width=line_data[index]['line_width'], legend_label=line_data[index]['legend_label'])
+                    line_width=2, legend_label=line_data[index]['legend_label'])
 
     f_plot.legend.location = "top_left"
     f_plot.legend.title = "Sensors"

@@ -1,6 +1,7 @@
 .DS_Store
 .json
 main.py
+notes.txt
 index.html
 Outputs
 venv/include/
