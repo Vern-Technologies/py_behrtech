@@ -134,23 +134,6 @@ class ApiCall:
 
         return res
 
-    def get_all_node_models(self):
-        """
-        Returns data on all setup node models from the gateway. The variable server_address must first be set before
-        this function will work.
-
-        :return: the requested data for all node models from the gateway
-        """
-
-        # Retrieves the JWT Token of the gateway computer
-        jwt_token = self.fetch_jwt_token()
-
-        message = self.server_address + "/v2/sensormodels"
-
-        res = requests.get(message, headers={"Authorization": f"Bearer {jwt_token}"})
-
-        return res
-
     def get_node_models(self):
         """
         Returns data on all setup node models from the gateway. The variable server_address must first be set before
