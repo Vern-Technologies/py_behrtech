@@ -93,10 +93,29 @@ class ApiCall:
         else:
             print("The wrong server IP address or login credentials were provided")
 
+    def get_all_sensor_data(self, return_count, offset):
+        """
+        Returns all messages from the gateway. The variable server_address must first be set before this function
+        will work.
+
+        :param return_count: Is the amount of messages to be requested
+        :param offset: Is the message count to start the message request from
+        :return: the requested messages from the gateway
+        """
+
+        # Retrieves the JWT Token of the gateway computer
+        jwt_token = self.fetch_jwt_token()
+
+        message = self.server_address + f"/v2/messages?returnCount={return_count}&offset={offset}"
+
+        res = requests.get(message, headers={"Authorization": f"Bearer {jwt_token}"})
+
+        return res
+
     def get_sensor_data(self, return_count, offset, senor_name):
         """
-        Returns sensor messages from the gateway for a given sensor. The variables server_address, sensor_list,
-        and jwt_token must first be set before this function will work.
+        Returns sensor messages from the gateway for a given sensor. The variable server_address must first be set
+        before this function will work.
 
         :param return_count: Is the amount of messages to be requested for the given sensor
         :param offset: Is the message count to start the message request from
@@ -110,6 +129,200 @@ class ApiCall:
 
         message = self.server_address + f"/v2/messages?returnCount={return_count}&offset={offset}&epEui=" \
                                         f"{self.sensor_list[senor_name]}"
+
+        res = requests.get(message, headers={"Authorization": f"Bearer {jwt_token}"})
+
+        return res
+
+    def get_all_node_models(self):
+        """
+        Returns data on all setup node models from the gateway. The variable server_address must first be set before
+        this function will work.
+
+        :return: the requested data for all node models from the gateway
+        """
+
+        # Retrieves the JWT Token of the gateway computer
+        jwt_token = self.fetch_jwt_token()
+
+        message = self.server_address + "/v2/sensormodels"
+
+        res = requests.get(message, headers={"Authorization": f"Bearer {jwt_token}"})
+
+        return res
+
+    def get_node_models(self):
+        """
+        Returns data on all setup node models from the gateway. The variable server_address must first be set before
+        this function will work.
+
+        :return: the requested data for all node models from the gateway
+        """
+
+        # Retrieves the JWT Token of the gateway computer
+        jwt_token = self.fetch_jwt_token()
+
+        message = self.server_address + "/v2/sensormodels"
+
+        res = requests.get(message, headers={"Authorization": f"Bearer {jwt_token}"})
+
+        return res
+
+    def get_node_model(self, model_type):
+        """
+        Returns data on all setup node models from the gateway. The variable server_address must first be set before
+        this function will work.
+
+        :param model_type: Is the unique identifier of the node model to be requested
+        :return: the requested node model data from the gateway
+        """
+
+        # Retrieves the JWT Token of the gateway computer
+        jwt_token = self.fetch_jwt_token()
+
+        message = self.server_address + f"/v2/sensormodels/{model_type}"
+
+        res = requests.get(message, headers={"Authorization": f"Bearer {jwt_token}"})
+
+        return res
+
+    def get_all_nodes(self, return_count, offset):
+        """
+        Returns data on all connected nodes from the gateway. The variable server_address must first be set before this
+        function will work.
+
+        :param return_count: Is the amount of nodes to be requested
+        :param offset: Is the node count to start the node data request from
+        :return: the requested node data from the gateway
+        """
+
+        # Retrieves the JWT Token of the gateway computer
+        jwt_token = self.fetch_jwt_token()
+
+        message = self.server_address + f"/v2/nodes?returnCount={return_count}&offset={offset}"
+
+        res = requests.get(message, headers={"Authorization": f"Bearer {jwt_token}"})
+
+        return res
+
+    def get_node(self, node_id):
+        """
+        Returns data on a requested node from the gateway. The variable server_address must first be set before this
+        function will work.
+
+        :param node_id: Is the unique identifier of the node to be requested
+        :return: the requested node data from the gateway
+        """
+
+        # Retrieves the JWT Token of the gateway computer
+        jwt_token = self.fetch_jwt_token()
+
+        message = self.server_address + f"/v2/nodes/{node_id}"
+
+        res = requests.get(message, headers={"Authorization": f"Bearer {jwt_token}"})
+
+        return res
+
+    def get_MQTT_mappings(self, return_count, offset):
+        """
+        Returns data on all setup MQTT Topics from the gateway. The variable server_address must first be set before
+        this function will work.
+
+        :param return_count: Is the amount of MQTT Topics to be requested
+        :param offset: Is the MQTT Topic count to start the MQTT Topic data request from
+        :return: the requested MQTT Topic data from the gateway
+        """
+
+        # Retrieves the JWT Token of the gateway computer
+        jwt_token = self.fetch_jwt_token()
+
+        message = self.server_address + f"/v2/mqttmapping?returnCount={return_count}&offset={offset}"
+
+        res = requests.get(message, headers={"Authorization": f"Bearer {jwt_token}"})
+
+        return res
+
+    def get_all_MQTT_brokers(self, return_count, offset):
+        """
+        Returns data on all setup MQTT Brokers from the gateway. The variable server_address must first be set before
+        this function will work.
+
+        :param return_count: Is the amount of MQTT Brokers to be requested
+        :param offset: Is the MQTT Broker count to start the MQTT Broker data request from
+        :return: the requested MQTT Broker data from the gateway
+        """
+
+        # Retrieves the JWT Token of the gateway computer
+        jwt_token = self.fetch_jwt_token()
+
+        message = self.server_address + f"/v2/broker?returnCount={return_count}&offset={offset}"
+
+        res = requests.get(message, headers={"Authorization": f"Bearer {jwt_token}"})
+
+        return res
+
+    def get_MQTT_broker(self, broker_id):
+        """
+        Returns data on a requested MQTT Broker from the gateway. The variable server_address must first be set before
+        this function will work.
+
+        :param broker_id: Is the unique identifier of the MQTT Broker to be requested
+        :return: the requested MQTT Broker data from the gateway
+        """
+
+        # Retrieves the JWT Token of the gateway computer
+        jwt_token = self.fetch_jwt_token()
+
+        message = self.server_address + f"/v2/broker/{broker_id}"
+
+        res = requests.get(message, headers={"Authorization": f"Bearer {jwt_token}"})
+
+        return res
+
+    def get_auth_ticker(self):
+        """
+        # TODO: Figure out what this data is used for
+
+        :return: the requested MQTT Topic data from the gateway
+        """
+
+        # Retrieves the JWT Token of the gateway computer
+        jwt_token = self.fetch_jwt_token()
+
+        message = self.server_address + "/v2/auth/ticket"
+
+        res = requests.get(message, headers={"Authorization": f"Bearer {jwt_token}"})
+
+        return res
+
+    def get_gateway_data(self):
+        """
+        Returns data on the gateway. The variable server_address must first be set before this function will work.
+
+        :return: the requested gateway data
+        """
+
+        # Retrieves the JWT Token of the gateway computer
+        jwt_token = self.fetch_jwt_token()
+
+        message = self.server_address + "/v2/system"
+
+        res = requests.get(message, headers={"Authorization": f"Bearer {jwt_token}"})
+
+        return res
+
+    def get_azure_mapping(self):
+        """
+        Returns data for setup Azure connections on the gateway. The variable server_address must first be set before
+        this function will work.
+
+        :return: the requested Azure connection data
+        """
+
+        # Retrieves the JWT Token of the gateway computer
+        jwt_token = self.fetch_jwt_token()
+
+        message = self.server_address + "/v2/azuremapping"
 
         res = requests.get(message, headers={"Authorization": f"Bearer {jwt_token}"})
 
