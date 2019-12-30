@@ -54,6 +54,18 @@ class Parser:
 
         text_file.close()
 
+    def get_message_count(self):
+        """
+        Returns the total count of messages
+
+        :return: The message count total
+        """
+
+        data = json.loads(self.data)
+        count = data.get("count")
+
+        return count
+
     def get_message_data(self):
         """
         Sources all the data of the class to retrieve all sensor data for each message including a time stamp and
@@ -76,6 +88,8 @@ class Parser:
 
                     if "message" not in data.keys():
                         data["time"] = x.get("time")
+                        data["command"] = x.get("command")
+                        data["type"] = x.get("type")
                         data["sensorID"] = x.get("epEui")
                         user_data.append(data)
 
@@ -159,6 +173,8 @@ class Parser:
 
                             if "message" not in data.keys():
                                 data["time"] = x.get("time")
+                                data["command"] = x.get("command")
+                                data["type"] = x.get("type")
                                 data["sensorID"] = x.get("epEui")
                                 user_data.append(data)
 
@@ -226,5 +242,63 @@ class Parser:
 
                             if "message" not in data.keys():
                                 data["time"] = x.get("time")
+                                data["command"] = x.get("command")
+                                data["type"] = x.get("type")
                                 data["sensorID"] = x.get("epEui")
                                 return data
+
+    def get_message_epEui(self):
+        """
+        Sources all the data of the class to retrieve the epEui for each message
+
+        :return: The epEui of each message as a list
+        """
+
+        ids = []
+        data = json.loads(self.data)
+        messages = data.get("messages")
+
+        for x in messages:
+            if x.get("command") == "rxData":
+
+                check = x.get("epEui")
+
+                if check:
+                    ids.append(check)
+
+        return ids
+
+    def get_message_data_for_epEui(self, eui_number):
+        """
+        Sources all the data of the class to retrieve all sensor data for a message including a time stamp and
+        sensor ID that matches the requested epEui number
+
+        :param eui_number: The epEui number of the message that data is being requested for
+        :return: The data of the message requested for as a dictionary
+        """
+
+        user_data = []
+        data = json.loads(self.data)
+        messages = data.get("messages")
+
+        for x in messages:
+            if x.get("command") == "rxData":
+
+                check_eui = x.get("epEui")
+
+                if check_eui:
+                    if check_eui == eui_number:
+
+                        check_data = x.get("userDataJSON")
+
+                        if check_data:
+                            data = json.loads(check_data)
+
+                            if "message" not in data.keys():
+                                data["time"] = x.get("time")
+                                data["command"] = x.get("command")
+                                data["type"] = x.get("type")
+                                data["sensorID"] = x.get("epEui")
+                                user_data.append(data)
+
+        return user_data
