@@ -1,4 +1,5 @@
 from bokeh.plotting import figure
+from bokeh.models import ColumnDataSource, HoverTool
 
 
 def bokeh_line_graph(data_x, data_y, x_axis, y_axis, title, line_data):
@@ -16,29 +17,42 @@ def bokeh_line_graph(data_x, data_y, x_axis, y_axis, title, line_data):
     :return: The bokeh generated line graph
     """
 
-    tool_tips = [
-        ("Index", "$index"),
-        (f"{y_axis}, {x_axis}", "($y, $x)"),
-        ("Type", f"{title}"),
-    ]
-
     f_plot = figure(
         title=title,
         x_axis_label=x_axis,
         y_axis_label=y_axis,
         x_axis_type='datetime',
         sizing_mode="stretch_both",
-        tools="pan, wheel_zoom, box_zoom, save, reset",
-        tooltips=tool_tips
+        tools="pan, wheel_zoom, box_zoom, save, reset"
     )
 
     for index in range(len(data_x)):
-        f_plot.line(data_x[index], data_y[index], color=line_data[index]['color'],
-                    line_width=2, legend_label=line_data[index]['legend_label'])
+
+        source = ColumnDataSource(data={
+            'Date': data_x[index],
+            'Data': data_y[index],
+        })
+
+        f_plot.line('Date', 'Data', color=line_data[index]['color'],
+                    line_width=2, legend_label=line_data[index]['legend_label'], source=source)
 
     f_plot.legend.location = "top_left"
     f_plot.legend.title = "Sensors"
     f_plot.legend.title_text_font_style = "bold"
     f_plot.legend.title_text_font_size = "15pt"
+    f_plot.add_tools(HoverTool(
+        tooltips=[
+            ("Index", "$index"),
+            (y_axis, "$y"),
+            ('Date', '@Date{%Y-%m-%d %H:%M:%S}')
+        ],
+
+        formatters={
+            'Date': 'datetime',  # Use 'datetime' formatter for 'date' field
+        },
+
+        # Display a tooltip whenever the cursor is vertically in line with a glyph
+        mode='vline'
+    ))
 
     return f_plot
