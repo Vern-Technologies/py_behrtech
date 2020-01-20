@@ -5,7 +5,7 @@ with open("gateway_package/README.md", "r") as fh:
 
 setuptools.setup(
     name="gateway-pkg-CGF",
-    version="0.1.1",
+    version="0.2.1",
     license="MIT",
     author="Matthew Ashley",
     author_email="matthewashley@verntechnologies.com",
