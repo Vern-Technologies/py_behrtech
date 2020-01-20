@@ -6,7 +6,7 @@ import os
 class Parser:
     """
     Is the base class for breaking data returned from a gateway computer from BehrTech into usable components. Provides
-    stander functions that apply to all sensor types connected to a gateway computer from BehrTech.
+    stander functions that apply to all sensor types connected to a gateway.
     """
 
     def __init__(self):
