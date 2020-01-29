@@ -5,6 +5,8 @@ import wiotp.sdk.application as ibm_app
 import wiotp.sdk.exceptions as ibm_exceptions
 
 
+# TODO: Add try catches for all ibm package functions to catch all errors. Test for names with spaces!!!!
+
 class Devices:
     """
     Is a class that interfaces with IBM's Python package to manage devices and device types
@@ -215,12 +217,18 @@ class Devices:
 
             result = client.registry.devices.create({"typeId": type_id, "deviceId": device_id})
 
+            print(result)
+
             if result.success:
                 return result
 
             else:
                 print(f"Device unable to be created for TypeId {type_id} and DeviceId {device_id}")
                 return None
+
+        else:
+            print(f"Provided device type {type_id} does not exist")
+            return None
 
     def get_all_devices(self):
         """

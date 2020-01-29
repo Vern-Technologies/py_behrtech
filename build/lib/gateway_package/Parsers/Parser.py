@@ -54,7 +54,7 @@ class Parser:
 
         text_file.close()
 
-    def get_message_count(self):
+    def get_message_count(self) -> int:
         """
         Returns the total count of messages
 
@@ -66,7 +66,28 @@ class Parser:
 
         return count
 
-    def get_message_data(self):
+    def get_rxData_messages_as_json(self) -> str:
+        """
+        Sources all data of the class and returns only rxData messages as a json string
+
+        :return: All sensor data for each message as a json string
+        """
+
+        data = json.loads(self.data)
+        messages = data.get("messages")
+
+        remove = [x for x in messages if x.get("command") != "rxData"]
+
+        for rem in remove:
+            messages.remove(rem)
+
+        data['count'] = data['count'] - len(remove)
+        data['total'] = data['total'] - len(remove)
+        data['messages'] = messages
+
+        return json.dumps(data, indent=4, sort_keys=True)
+
+    def get_message_data(self) -> list:
         """
         Sources all the data of the class to retrieve all sensor data for each message including a time stamp and
         sensor ID
@@ -95,7 +116,7 @@ class Parser:
 
         return user_data
 
-    def get_message_datetime_as_str(self):
+    def get_message_datetime_as_str(self) -> list:
         """
         Sources all the data of the class to retrieve the time stamp for each message
 
@@ -117,7 +138,7 @@ class Parser:
 
         return time_info
 
-    def get_message_datetime_as_datetime(self):
+    def get_message_datetime_as_datetime(self) -> list:
         """
         Sources all the data of the class to retrieve the time stamp for each message
 
@@ -140,7 +161,7 @@ class Parser:
 
         return time_info
 
-    def get_message_data_in_date_range(self, start: datetime, end: datetime):
+    def get_message_data_in_date_range(self, start: datetime, end: datetime) -> list:
         """
         Sources all the data of the class to retrieve all sensor data for a message including a time stamp and
         sensor ID that is within the specified date range
@@ -183,7 +204,7 @@ class Parser:
 
         return user_data
 
-    def get_date_ranges(self):
+    def get_date_ranges(self) -> dict:
         """
         Sources all the data of the class to retrieve the date range of the data of the class
 
@@ -194,7 +215,7 @@ class Parser:
 
         return {"Recent": time[0]["date"], "Oldest": time[-1]["date"]}
 
-    def get_message_id(self):
+    def get_message_id(self) -> list:
         """
         Sources all the data of the class to retrieve the id for each message
 
@@ -215,7 +236,7 @@ class Parser:
 
         return ids
 
-    def get_message_data_for_id(self, id_number):
+    def get_message_data_for_id(self, id_number) -> dict:
         """
         Sources all the data of the class to retrieve all sensor data for a message including a time stamp and
         sensor ID that matches the requested id number
@@ -247,7 +268,7 @@ class Parser:
                                 data["sensorID"] = x.get("epEui")
                                 return data
 
-    def get_message_epEui(self):
+    def get_message_epEui(self) -> list:
         """
         Sources all the data of the class to retrieve the epEui for each message
 
@@ -268,7 +289,7 @@ class Parser:
 
         return ids
 
-    def get_message_data_for_epEui(self, eui_number):
+    def get_message_data_for_epEui(self, eui_number) -> list:
         """
         Sources all the data of the class to retrieve all sensor data for a message including a time stamp and
         sensor ID that matches the requested epEui number
