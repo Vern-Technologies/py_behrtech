@@ -5,8 +5,6 @@ import wiotp.sdk.application as ibm_app
 import wiotp.sdk.exceptions as ibm_exceptions
 
 
-# TODO: Add try catches for all ibm package functions to catch all errors. Test for names with spaces!!!!
-
 class Devices:
     """
     Is a class that interfaces with IBM's Python package to manage devices and device types
@@ -83,6 +81,27 @@ class Devices:
 
         return doc
 
+    def test_connection(self):
+        """
+        Checks for a connection to the IBM Watson IoT Platform
+
+        :return:
+        """
+
+        # Creates a yaml file on system at package root to pass to ibm application parse configuration
+        with open('app.yaml', 'w') as outfile:
+            yaml.dump(self.doc, outfile, default_flow_style=False)
+
+        options = ibm_app.parseConfigFile("app.yaml")
+        client = ibm_app.ApplicationClient(config=options, logHandlers=None)
+
+        client.connect()
+
+        # Remove generated app configuration file
+        os.remove('app.yaml')
+
+        return client.isConnected()
+
     def verify_device_type(self, type_id: str):
         """
         Verifies that a device type exist on IBM Watson's IoT Platform
@@ -98,12 +117,11 @@ class Devices:
         options = ibm_app.parseConfigFile("app.yaml")
         client = ibm_app.ApplicationClient(config=options, logHandlers=None)
 
+        # Remove generated app configuration file
         os.remove('app.yaml')
 
         try:
-            device_type = client.registry.devicetypes[type_id]
-
-            if device_type:
+            if client.registry.devicetypes[type_id]:
                 return True
 
         except KeyError:
@@ -124,6 +142,7 @@ class Devices:
         options = ibm_app.parseConfigFile("app.yaml")
         client = ibm_app.ApplicationClient(config=options, logHandlers=None)
 
+        # Remove generated app configuration file
         os.remove('app.yaml')
 
         device_list = [device_type for device_type in client.registry.devicetypes]
@@ -150,6 +169,7 @@ class Devices:
         options = ibm_app.parseConfigFile("app.yaml")
         client = ibm_app.ApplicationClient(config=options, logHandlers=None)
 
+        # Remove generated app configuration file
         os.remove('app.yaml')
 
         if self.verify_device_type(type_id=type_id):
@@ -183,6 +203,7 @@ class Devices:
         options = ibm_app.parseConfigFile("app.yaml")
         client = ibm_app.ApplicationClient(config=options, logHandlers=None)
 
+        # Remove generated app configuration file
         os.remove('app.yaml')
 
         if not self.verify_device_type(type_id=type_id):
@@ -194,6 +215,31 @@ class Devices:
         else:
             print(f"Device type {type_id} already exists")
             return False
+
+    def verify_device(self, device_id: str):
+        """
+        Verifies if a device exist or not on IBM Watson's IoT Platform
+
+        :param device_id: The ID of the device to verify for
+        :return: Boolean if device exist or not
+        """
+
+        # Creates a yaml file on system at package root to pass to ibm application parse configuration
+        with open('app.yaml', 'w') as outfile:
+            yaml.dump(self.doc, outfile, default_flow_style=False)
+
+        options = ibm_app.parseConfigFile("app.yaml")
+        client = ibm_app.ApplicationClient(config=options, logHandlers=None)
+
+        # Remove generated app configuration file
+        os.remove('app.yaml')
+
+        for device in client.registry.devices:
+            if device['deviceId'] == device_id:
+                return device
+
+        print(f"Device {device_id} does not exist")
+        return False
 
     def create_device(self, type_id: str, device_id: str):
         """
@@ -211,24 +257,56 @@ class Devices:
         options = ibm_app.parseConfigFile("app.yaml")
         client = ibm_app.ApplicationClient(config=options, logHandlers=None)
 
+        # Remove generated app configuration file
         os.remove('app.yaml')
 
         if self.verify_device_type(type_id=type_id):
 
-            result = client.registry.devices.create({"typeId": type_id, "deviceId": device_id})
+            if not self.verify_device(device_id=device_id):
 
-            print(result)
+                result = client.registry.devices.create({"typeId": type_id, "deviceId": device_id})
 
-            if result.success:
-                return result
+                if result.success:
+                    return result
+
+                else:
+                    print(f"Device unable to be created for TypeId {type_id} and DeviceId {device_id}")
+                    return None
 
             else:
-                print(f"Device unable to be created for TypeId {type_id} and DeviceId {device_id}")
+
+                print(f"Device {device_id} already exist")
                 return None
 
         else:
             print(f"Provided device type {type_id} does not exist")
             return None
+
+    def delete_device(self, device_id: str):
+        """
+        Deletes a device from IBM Watson's IoT Platform
+
+        :param device_id: The ID of the device to be deleted
+        :return: Boolean value if device was deleted or not
+        """
+
+        # Creates a yaml file on system at package root to pass to ibm application parse configuration
+        with open('app.yaml', 'w') as outfile:
+            yaml.dump(self.doc, outfile, default_flow_style=False)
+
+        options = ibm_app.parseConfigFile("app.yaml")
+        client = ibm_app.ApplicationClient(config=options, logHandlers=None)
+
+        # Remove generated app configuration file
+        os.remove('app.yaml')
+
+        for device in client.registry.devices:
+            if device['deviceId'] == device_id:
+
+                return client.registry.devices.delete({"deviceId": device_id})
+
+        print(f"Device {device_id} does not exist")
+        return False
 
     def get_all_devices(self):
         """
@@ -244,6 +322,7 @@ class Devices:
         options = ibm_app.parseConfigFile("app.yaml")
         client = ibm_app.ApplicationClient(config=options, logHandlers=None)
 
+        # Remove generated app configuration file
         os.remove('app.yaml')
 
         device_list = [device for device in client.registry.devices]
