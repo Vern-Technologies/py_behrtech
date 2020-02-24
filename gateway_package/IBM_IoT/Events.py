@@ -1,5 +1,4 @@
 import os
-import time
 import yaml
 import wiotp.sdk.device as ibm_device
 
@@ -116,11 +115,11 @@ class Events:
 
         return doc
 
-    def publish_event(self, data: dict, event_id: str):
+    def publish_event(self, data: list, event_id: str) -> list:
         """
         Publishes device data to the IBM Watson IoT Platform
 
-        :param data: Device json data
+        :param data: List of Device json data messages
         :param event_id: Event topic to publish at
         """
 
@@ -134,7 +133,11 @@ class Events:
         client.connect()
 
         if client.isConnected():
-            client.publishEvent(eventId=event_id, msgFormat="json", data=data, qos=0, onPublish=None)
-            time.sleep(5)
+
+            events = [client.publishEvent(eventId=event_id, msgFormat="json", data=event, qos=0, onPublish=None)
+                      for event in data]
 
             os.remove('device.yaml')
+
+            return events
+
