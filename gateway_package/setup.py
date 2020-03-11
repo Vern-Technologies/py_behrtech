@@ -5,7 +5,7 @@ with open("gateway_package/README.md", "r") as fh:
 
 setuptools.setup(
     name="gateway-pkg-CGF",
-    version="0.2.1",
+    version="0.2.12",
     license="MIT",
     author="Matthew Ashley",
     author_email="matthewashley@verntechnologies.com",
@@ -14,6 +14,11 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://bitbucket.org/matthewashley1/gateway-apis/src/master/",
     packages=setuptools.find_packages(),
+    install_requires=[
+      'bokeh',
+      'requests',
+      'wiotp-sdk'
+    ],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

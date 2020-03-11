@@ -67,27 +67,6 @@ class Parser:
 
         return count
 
-    def get_message_data_as_json(self) -> str:
-        """
-        Sources all data of the class and returns only rxData messages as a json string
-
-        :return: All sensor data for each message as a json string
-        """
-
-        data = json.loads(self.data)
-        messages = data.get("messages")
-
-        remove = [x for x in messages if x.get("command") != "rxData"]
-
-        for rem in remove:
-            messages.remove(rem)
-
-        data['count'] = data['count'] - len(remove)
-        data['total'] = data['total'] - len(remove)
-        data['messages'] = messages
-
-        return json.dumps(data, indent=4, sort_keys=True)
-
     def get_message_data(self) -> list:
         """
         Sources all the data of the class to retrieve all sensor data for each message including a time stamp and
