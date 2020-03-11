@@ -1,6 +1,7 @@
 import requests
 from requests import Response, ConnectTimeout
-from urllib3.exceptions import MaxRetryError, ConnectTimeoutError
+from requests.exceptions import ConnectionError, RequestException, HTTPError
+from urllib3.exceptions import MaxRetryError, ConnectTimeoutError, NewConnectionError, HTTPError
 
 
 class ApiCall:
@@ -70,6 +71,19 @@ class ApiCall:
 
         return self.server_address
 
+    def test_connection(self) -> bool:
+
+        # Retrieves the JWT Token of the gateway computer
+        jwt_token = self.fetch_jwt_token
+
+        message = self.server_address + "/v2/sensormodels"
+
+        try:
+            requests.get(message, headers={"Authorization": f"Bearer {jwt_token}"})
+            return True
+        except RequestException:
+            return False
+
     @property
     def fetch_jwt_token(self) -> str:
         """
@@ -84,7 +98,7 @@ class ApiCall:
 
                 return results.get("JWT")
 
-        except (TimeoutError, ConnectTimeoutError, MaxRetryError, ConnectTimeout):
+        except (TimeoutError, ConnectTimeoutError, MaxRetryError, ConnectTimeout, RequestException):
             print("The wrong server IP address or login credentials were provided")
 
     def get_all_sensor_data(self, return_count: int, offset: int) -> Response:
@@ -136,7 +150,7 @@ class ApiCall:
 
     def get_node_model(self, model_type: str) -> Response:
         """
-        Returns data on all setup node models from the gateway.
+        Returns data on a requested node model from the gateway.
 
         :param model_type: Is the unique identifier of the node model to be requested
         :return: the requested node model data from the gateway

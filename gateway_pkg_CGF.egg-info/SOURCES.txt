@@ -1,7 +1,4 @@
 README.md
-gateway_package/__init__.py
-gateway_package/api_calls.py
-gateway_package/bokeh_plots.py
 gateway_package/setup.py
 gateway_package/IBM_IoT/Devices.py
 gateway_package/IBM_IoT/Events.py
@@ -17,4 +14,5 @@ gateway_package/Parsers/__init__.py
 gateway_pkg_CGF.egg-info/PKG-INFO
 gateway_pkg_CGF.egg-info/SOURCES.txt
 gateway_pkg_CGF.egg-info/dependency_links.txt
+gateway_pkg_CGF.egg-info/requires.txt
 gateway_pkg_CGF.egg-info/top_level.txt
