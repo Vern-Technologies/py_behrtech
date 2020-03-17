@@ -1,8 +1,9 @@
 from bokeh.plotting import figure
+from bokeh.embed import components
 from bokeh.models import ColumnDataSource, HoverTool
 
 
-def bokeh_line_graph(data_x, data_y, x_axis, y_axis, title, line_data):
+def line_graph(data_x, data_y, x_axis, y_axis, title, line_data):
     """
     Generates a bokeh line graph. Makes generating line graphs for the gateway software more simple
 
@@ -51,8 +52,7 @@ def bokeh_line_graph(data_x, data_y, x_axis, y_axis, title, line_data):
             'Date': 'datetime',  # Use 'datetime' formatter for 'date' field
         },
 
-        # Display a tooltip whenever the cursor is vertically in line with a glyph
-        mode='vline'
+        mode='vline'  # Display a tooltip whenever the cursor is vertically in line with a glyph
     ))
 
-    return f_plot
+    return components(f_plot)

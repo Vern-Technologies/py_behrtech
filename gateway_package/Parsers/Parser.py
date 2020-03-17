@@ -1,7 +1,7 @@
 
-from datetime import datetime
-import json
 import os
+import json
+from datetime import datetime
 
 
 class Parser:
@@ -66,6 +66,30 @@ class Parser:
         count = data.get("count")
 
         return count
+
+    def get_component_data(self, component: str):
+        """
+        Sources all the data of the class to retrieve the data for a specified component for each message
+
+        :return: The data for a specified component for each message as a list
+        """
+
+        component_data = []
+        data = json.loads(self.data)
+        messages = data.get("messages")
+
+        for x in messages:
+            if x.get("command") == "rxData":
+
+                check = x.get("userDataJSON")
+
+                if check:
+                    data = json.loads(check)
+
+                    if "message" not in data.keys() and component in data.keys():
+                        component_data.append(data[component])
+
+        return component_data
 
     def get_message_data(self) -> list:
         """

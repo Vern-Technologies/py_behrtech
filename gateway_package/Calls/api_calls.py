@@ -1,7 +1,9 @@
+
+import json
 import requests
 from requests import Response, ConnectTimeout
-from requests.exceptions import ConnectionError, RequestException, HTTPError
-from urllib3.exceptions import MaxRetryError, ConnectTimeoutError, NewConnectionError, HTTPError
+from requests.exceptions import RequestException
+from urllib3.exceptions import MaxRetryError, ConnectTimeoutError
 
 
 class ApiCall:
@@ -282,3 +284,29 @@ class ApiCall:
         message = self.server_address + "/v2/azuremapping"
 
         return requests.get(message, headers={"Authorization": f"Bearer {jwt_token}"})
+
+    def get_components(self, ep_eui: str) -> list:
+        """
+        Returns a list of measured components for the specified sensor
+
+        :param ep_eui:  The unique identifier of a node
+        :return: List of measured components
+        """
+
+        sens_type = json.loads(self.get_node(ep_eui=ep_eui).text).get('type')
+        components = json.loads(self.get_node_model(model_type=sens_type).text).get('components')
+
+        return [x for x in components]
+
+    def get_units(self, ep_eui: str) -> dict:
+        """
+        Returns a dict of units for measured components for the specified sensor
+
+        :param ep_eui: The unique identifier of a node
+        :return: Dict of units for measured components
+        """
+
+        sens_type = json.loads(self.get_node(ep_eui=ep_eui).text).get('type')
+        components = json.loads(self.get_node_model(model_type=sens_type).text).get('components')
+
+        return {x: components.get(x)['unit'] for x in components}
