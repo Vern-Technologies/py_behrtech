@@ -1,7 +1,7 @@
 Metadata-Version: 2.1
 Name: gateway-pkg-CGF
-Version: 0.3.0
-Summary: A package for connecting to and accessing information on BehrTech's gateway computers
+Version: 0.3.8
+Summary: A package for connecting to and accessing Sensor information on BehrTech's gateway computers
 Home-page: https://bitbucket.org/matthewashley1/gateway-apis/src/master/
 Author: Matthew Ashley
 Author-email: matthewashley@verntechnologies.com

@@ -5,11 +5,11 @@ with open("gateway_package/README.md", "r") as fh:
 
 setuptools.setup(
     name="gateway-pkg-CGF",
-    version="0.3.0",
+    version="0.3.8",
     license="MIT",
     author="Matthew Ashley",
     author_email="matthewashley@verntechnologies.com",
-    description="A package for connecting to and accessing information on BehrTech's gateway computers",
+    description="A package for connecting to and accessing Sensor information on BehrTech's gateway computers",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://bitbucket.org/matthewashley1/gateway-apis/src/master/",

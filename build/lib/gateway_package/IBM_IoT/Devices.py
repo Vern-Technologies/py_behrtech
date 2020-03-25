@@ -1,3 +1,4 @@
+
 import uuid
 import yaml
 import os
@@ -95,12 +96,14 @@ class Devices:
         options = ibm_app.parseConfigFile("app.yaml")
         client = ibm_app.ApplicationClient(config=options, logHandlers=None)
 
-        client.connect()
-
         # Remove generated app configuration file
         os.remove('app.yaml')
 
-        return client.isConnected()
+        try:
+            client.connect()
+            return True
+        except ibm_exceptions.ConnectionException:
+            return False
 
     def verify_device_type(self, type_id: str):
         """

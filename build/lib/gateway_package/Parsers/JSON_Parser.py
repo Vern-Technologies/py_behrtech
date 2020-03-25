@@ -118,3 +118,25 @@ class JSONParser(Parser):
 
                     return json.dumps(data, indent=4, sort_keys=True)
 
+    def get_messages_to_id(self, id_num: str) -> str:
+        """
+        Sources all the data of the class to retrieve all messages up to the message with the provided ID
+
+        :param id_num: The ID number of the message to requested messages to
+        :return: Messages from the start to the message with the provided id
+        """
+
+        user_data = []
+        data = json.loads(self.data)
+
+        for x in data.get("messages"):
+
+            if x.get('_id') == id_num:
+                data['count'] = data['total'] = len(user_data)
+                data['messages'] = user_data
+
+                return json.dumps(data, indent=4, sort_keys=True)
+
+            user_data.append(x)
+
+        return "No message exist with the provided ID"

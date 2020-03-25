@@ -1,3 +1,4 @@
+
 import os
 import yaml
 import wiotp.sdk.device as ibm_device
@@ -130,14 +131,15 @@ class Events:
         options = ibm_device.parseConfigFile('device.yaml')
         client = ibm_device.DeviceClient(config=options, logHandlers=None)
 
+        # Remove generated device configuration file
+        os.remove('device.yaml')
+
         client.connect()
 
         if client.isConnected():
 
             events = [client.publishEvent(eventId=event_id, msgFormat="json", data=event, qos=0, onPublish=None)
                       for event in data]
-
-            os.remove('device.yaml')
 
             return events
 

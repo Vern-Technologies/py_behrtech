@@ -1,7 +1,12 @@
+
+# Files
 .DS_Store
 .json
 main.py
-notes.txt
 index.html
+app.yaml
+device.yaml
+
+# Directories
 Outputs
 venv

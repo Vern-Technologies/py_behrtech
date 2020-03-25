@@ -76,14 +76,9 @@ class ApiCall:
     def test_connection(self) -> bool:
 
         # Retrieves the JWT Token of the gateway computer
-        jwt_token = self.fetch_jwt_token
-
-        message = self.server_address + "/v2/sensormodels"
-
-        try:
-            requests.get(message, headers={"Authorization": f"Bearer {jwt_token}"})
+        if self.fetch_jwt_token:
             return True
-        except RequestException:
+        else:
             return False
 
     @property
@@ -93,7 +88,7 @@ class ApiCall:
         """
         try:
             res = requests.post(self.server_address + "/v2/login",
-                                json={'user': self.username, 'password': self.password}, timeout=10)
+                                json={'user': self.username, 'password': self.password}, timeout=3)
 
             if res:
                 results: dict = res.json()
