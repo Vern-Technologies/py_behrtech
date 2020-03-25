@@ -141,10 +141,11 @@ class Parser:
                 data["Command"] = x.get("command")
                 data["Type"] = x.get("type")
                 data["SensorID"] = x.get("epEui")
+                data["ID"] = x.get('_id')
 
             else:
                 data = {"Time": x.get("time"), "Command": x.get("command"), "Type": x.get("type"),
-                        "SensorID": x.get("epEui")}
+                        "SensorID": x.get("epEui"), "ID": x.get('_id')}
 
             user_data.append(data)
 
@@ -286,7 +287,7 @@ class Parser:
 
         return {"Recent": time[0]["date"], "Oldest": time[-1]["date"]}
 
-    def get_message_id(self) -> list:
+    def get_message_ids(self) -> list:
         """
         Sources all the data of the class to retrieve the id for each message
 
