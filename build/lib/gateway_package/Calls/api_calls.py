@@ -1,7 +1,7 @@
 
 import json
 import requests
-from requests import Response, ConnectTimeout
+from requests import Response
 from requests.exceptions import RequestException
 from urllib3.exceptions import MaxRetryError, ConnectTimeoutError
 
@@ -95,7 +95,7 @@ class ApiCall:
 
                 return results.get("JWT")
 
-        except (TimeoutError, ConnectTimeoutError, MaxRetryError, ConnectTimeout, RequestException):
+        except (TimeoutError, ConnectTimeoutError, MaxRetryError, RequestException):
             print("The wrong server IP address or login credentials were provided")
 
     def get_all_sensor_data(self, return_count: int, offset: int) -> Response:
