@@ -8,5 +8,6 @@ app.yaml
 device.yaml
 
 # Directories
+.idea
 Outputs
 venv
