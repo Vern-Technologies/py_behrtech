@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: Fetch-BehrTech
-Version: 0.3.8
+Version: 0.3.9
 Summary: A package to interface with BehrTech's gateway computer API for requesting and parsing data
 Home-page: https://github.com/matthewashley1/Fetch_BehrTech
 Author: Matthew Ashley
