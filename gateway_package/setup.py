@@ -5,7 +5,7 @@ with open("gateway_package/README.md", "r") as fh:
 
 setuptools.setup(
     name="Fetch_BehrTech",
-    version="0.3.12",
+    version="0.3.13",
     license="MIT",
     author="Matthew Ashley",
     author_email="matthewashley1@gmail.com",
