@@ -5,8 +5,7 @@ name: publish-pypi
 
 on:
   push:
-      branches:
-          -master
+      branches: [ master ]
 
 jobs:
   deploy:
