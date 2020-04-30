@@ -8,4 +8,4 @@ for pushing data to the IBM IoT Platform and Bokeh Plotting.
 
 ## License
 
-Python-A-STAR is released under the [MIT](https://opensource.org/licenses/MIT) license
+Fetch_BehrTech is released under the [MIT](https://opensource.org/licenses/MIT) license
