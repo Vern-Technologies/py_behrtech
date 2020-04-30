@@ -8,7 +8,7 @@ setuptools.setup(
     version="0.3.13",
     license="MIT",
     author="Matthew Ashley",
-    author_email="matthewashley1@gmail.com",
+    author_email="matthewashley@verntechnologies.com",
     description="A package to interface with BehrTech's gateway computer API for requesting and parsing data",
     long_description=long_description,
     long_description_content_type="text/markdown",

@@ -3,10 +3,6 @@
 .DS_Store
 .json
 main.py
-index.html
-app.yaml
-device.yaml
-
 # Directories
 .idea
 Outputs

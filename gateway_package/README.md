@@ -1,4 +1,4 @@
 # Gateway APIs
 ___
 
-A custom Python package for interfacing with BehrTech's gateway computers to build applications
+A package to interface with BehrTech's gateway computer API for requesting and parsing data
