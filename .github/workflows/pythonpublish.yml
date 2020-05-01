@@ -27,5 +27,5 @@ jobs:
         TWINE_USERNAME: ${{ secrets.pypi_username }}
         TWINE_PASSWORD: ${{ secrets.pypi_password }}
       run: |
-        python gateway_package/setup.py sdist bdist_wheel
+        python fetch_behrtech/setup.py sdist bdist_wheel
         twine upload dist/*
