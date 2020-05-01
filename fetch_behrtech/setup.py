@@ -1,11 +1,11 @@
 import setuptools
 
-with open("gateway_package/README.md", "r") as fh:
+with open("fetch_behrtech/README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="Fetch_BehrTech",
-    version="0.3.15",
+    version="0.3.19",
     license="MIT",
     author="Matthew Ashley",
     author_email="matthewashley@verntechnologies.com",

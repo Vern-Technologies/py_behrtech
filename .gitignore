@@ -3,6 +3,8 @@
 .DS_Store
 .json
 main.py
+build_package.sh
+
 # Directories
 .idea
 Outputs

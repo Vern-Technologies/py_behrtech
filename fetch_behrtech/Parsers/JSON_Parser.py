@@ -1,7 +1,7 @@
 
 import json
 from datetime import datetime
-from gateway_package.Parsers.Parser import Parser
+from fetch_behrtech.Parsers.Parser import Parser
 
 
 class JSONParser(Parser):
