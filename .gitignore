@@ -4,8 +4,10 @@
 .json
 main.py
 build_package.sh
+*.pyc
 
 # Directories
 .idea
 Outputs
 venv
+__pycache__/
