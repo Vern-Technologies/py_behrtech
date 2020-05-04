@@ -9,7 +9,7 @@ iso8601==0.1.12
 Jinja2==3.0.0a1
 keyring==21.2.0
 MarkupSafe==2.0.0a1
-numpy==1.18.3
+numpy==1.18.4
 packaging==20.3
 paho-mqtt==1.5.0
 Pillow==7.1.2
