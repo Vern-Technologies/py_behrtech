@@ -10,7 +10,7 @@ Jinja2==3.0.0a1
 keyring==21.2.0
 MarkupSafe==2.0.0a1
 numpy==1.18.3
-packaging==20.3
+packaging==20.4
 paho-mqtt==1.5.0
 Pillow==7.1.2
 pkginfo==1.5.0.1
