@@ -5,7 +5,7 @@ with open("fetch_behrtech/README.md", "r") as fh:
 
 setuptools.setup(
     name="Fetch_BehrTech",
-    version="0.3.22",
+    version="0.3.45",
     license="MIT",
     author="Matthew Ashley",
     author_email="matthewashley@verntechnologies.com",
@@ -15,9 +15,10 @@ setuptools.setup(
     url="https://github.com/matthewashley1/Fetch_BehrTech",
     packages=setuptools.find_packages(),
     install_requires=[
-      'bokeh',
-      'requests',
-      'wiotp-sdk'
+        'bokeh',
+        'requests',
+        'wiotp-sdk',
+        'losant-rest'
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
