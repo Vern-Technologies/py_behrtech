@@ -4,7 +4,7 @@
 # Fetch_BehrTech
 
 A package to interface with BehrTech's gateway computer API for requesting and parsing data. Also has built in functionality
-for pushing data to the IBM IoT Platform and Bokeh Plotting.
+for pushing data to the IBM and Losant IoT Platform, as well as Bokeh Plotting.
 
 ## License
 
