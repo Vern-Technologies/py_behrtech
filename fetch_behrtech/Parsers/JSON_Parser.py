@@ -1,6 +1,8 @@
 
 import json
 from datetime import datetime
+from typing import Union
+
 from fetch_behrtech.Parsers.Parser import Parser
 
 
@@ -118,7 +120,7 @@ class JSONParser(Parser):
 
                     return json.dumps(data, indent=4, sort_keys=True)
 
-    def get_messages_to_id(self, id_num: str) -> str:
+    def get_messages_to_id(self, id_num: str) -> Union[str, bool]:
         """
         Sources all the data of the class to retrieve all messages up to the message with the provided ID
 
@@ -139,4 +141,4 @@ class JSONParser(Parser):
 
             user_data.append(x)
 
-        return "No message exist with the provided ID"
+        return False
