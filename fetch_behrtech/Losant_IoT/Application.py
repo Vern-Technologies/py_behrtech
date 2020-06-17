@@ -1,4 +1,4 @@
-from losantrest import Client
+from losantrest import Client, LosantError
 
 
 class Application:
@@ -20,40 +20,52 @@ class Application:
         return self.token
 
     @property
-    def client(self):
+    def client(self) -> Client:
         return Client(auth_token=self.token)
 
-    def app_details(self):
+    def test_connection(self) -> bool:
+        """
+        Test connection to the platform and verify provided credentials
+
+        :return: True or False if credentials are valid
+        """
+        try:
+            self.app_details()
+            return True
+        except LosantError:
+            return False
+
+    def app_details(self) -> str:
         return self.client.application.get(applicationId=self.app_id)
 
-    def readme(self):
+    def readme(self) -> str:
         return self.client.application.readme(applicationId=self.app_id)
 
-    def app_delete(self):
+    def app_delete(self) -> str:
         return self.client.application.delete(applicationId=self.app_id)
 
-    def search(self, name: str):
+    def search(self, name: str) -> str:
         return self.client.application.search(applicationId=self.app_id, filter=name)
 
 
 class Devices(Application):
 
-    def device_details(self, device_id: str):
+    def device_details(self, device_id: str) -> str:
         return self.client.device.get(applicationId=self.app_id, deviceId=device_id)
 
-    def log_entries(self, device_id: str):
+    def log_entries(self, device_id: str) -> str:
         return self.client.device.get_log_entries(applicationId=self.app_id, deviceId=device_id)
 
-    def device_update(self, device_id: str, options: dict):
+    def device_update(self, device_id: str, options: dict) -> str:
         return self.client.device.patch(applicationId=self.app_id, deviceId=device_id, device=options)
 
-    def device_delete(self, device_id: str):
+    def device_delete(self, device_id: str) -> str:
         return self.client.device.delete(applicationId=self.app_id, deviceId=device_id)
 
-    def get_recent_event(self, device_id: str):
+    def get_recent_event(self, device_id: str) -> str:
         return self.client.device.get_state(applicationId=self.app_id, deviceId=device_id)
 
-    def publish_event(self, device_id: str, data: list, event_id: str):
+    def publish_event(self, device_id: str, data: list, event_id: str) -> list:
         events = [self.client.device.send_state(
             deviceId=device_id, applicationId=self.app_id, deviceState={event_id: event}) for event in data]
 
@@ -79,14 +91,14 @@ class User:
         return self.password
 
     @property
-    def client(self):
+    def client(self) -> Client:
         client = Client()
         response = client.auth.authenticate_user(credentials={'email': self.email, 'password': self.password})
         client.auth_token = response['token']
         return client
 
-    def create_application(self, name: str, description: str):
+    def create_application(self, name: str, description: str) -> str:
         return self.client.applications.post(application={"name": name, "description": description})
 
-    def get_applications(self):
+    def get_applications(self) -> str:
         return self.client.applications.get()

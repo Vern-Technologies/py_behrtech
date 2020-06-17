@@ -125,7 +125,7 @@ class JSONParser(Parser):
         Sources all the data of the class to retrieve all messages up to the message with the provided ID
 
         :param id_num: The ID number of the message to requested messages to
-        :return: Messages from the start to the message with the provided id
+        :return: Messages from the start to the message with the provided id or False if id isn't found
         """
 
         user_data = []
