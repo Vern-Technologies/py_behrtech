@@ -10,7 +10,7 @@ Jinja2==3.0.0a1
 keyring==21.2.1
 losant-rest==1.10.2
 MarkupSafe==2.0.0a1
-numpy==1.19.0rc2
+numpy==1.19.0
 packaging==20.4
 paho-mqtt==1.5.0
 Pillow==7.1.2
