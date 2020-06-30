@@ -169,9 +169,9 @@ class Devices(Application):
         for event in data:
             if 'time' in event.keys():
                 events.append(self.client.device.send_state(deviceId=device_id, applicationId=self.app_id, deviceState={
-                        'time': event['time'], 'data': event['data']}))
+                        'time': event['time'], 'data': event}))
             else:
                 events.append(self.client.device.send_state(deviceId=device_id, applicationId=self.app_id, deviceState={
-                    'data': event['data']}))
+                    'data': event}))
 
         return events
