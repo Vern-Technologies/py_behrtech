@@ -13,7 +13,7 @@ MarkupSafe==2.0.0a1
 numpy==1.19.0rc2
 packaging==20.4
 paho-mqtt==1.5.0
-Pillow==7.1.2
+Pillow==7.2.0
 pkginfo==1.5.0.1
 Pygments==2.6.1
 pyparsing==3.0.0a1
