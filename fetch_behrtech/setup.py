@@ -5,14 +5,14 @@ with open("fetch_behrtech/README.md", "r") as fh:
 
 setuptools.setup(
     name="Fetch_BehrTech",
-    version="0.3.54",
+    version="0.3.55",
     license="MIT",
     author="Matthew Ashley",
     author_email="matthewashley@verntechnologies.com",
     description="A package to interface with BehrTech's gateway computer API for requesting and parsing data",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/matthewashley1/Fetch_BehrTech",
+    url="https://github.com/Vern-Technologies/Fetch_BehrTech",
     packages=setuptools.find_packages(),
     install_requires=[
         'bokeh',
