@@ -3,7 +3,8 @@
 
 # py_behrtech
 
-A package to interface with BehrTech's gateway API for requesting and parsing data.
+A python wrapper for BehrTech's Mythings Central REST API. Currently supporting version 3.0.0
+
 
 ## License
 
