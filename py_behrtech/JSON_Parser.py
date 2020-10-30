@@ -3,7 +3,7 @@ import json
 from datetime import datetime
 from typing import Union
 
-from fetch_behrtech.Parsers.Parser import Parser
+from py_behrtech.Parser import Parser
 
 
 class JSONParser(Parser):
