@@ -5,7 +5,7 @@ with open("py_behrtech/README.md", "r") as fh:
 
 setuptools.setup(
     name="py_behrtech",
-    version="2020.10.30",
+    version="2020.10.30.1",
     license="MIT",
     author="Matthew Ashley",
     author_email="matthewashley@verntechnologies.com",
