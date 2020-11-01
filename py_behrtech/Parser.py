@@ -13,7 +13,7 @@ class Parser:
     def __init__(self):
         self.data = None
 
-    def set_data_message(self, message):
+    def set_data_message(self, message: str):
         """
         Sets the data of the class from the message query of the gateway computer
 
@@ -21,7 +21,7 @@ class Parser:
         """
         self.data = message
 
-    def set_data_file(self, file_path):
+    def set_data_file(self, file_path: os.path):
         """
         Sets the data of the class loaded from a file
 
@@ -43,16 +43,18 @@ class Parser:
         """
         return self.data
 
-    def write_data_to_file(self, file_name: str):
+    def write_data_to_file(self, file_name: str, file_path: os.path = 'Outputs/'):
         """
         Outputs the data of the class to a JSON file
 
+        :param file_path: The path to write the file to
         :param file_name: The name of the file for the data of the class to be outputted to
         """
 
-        text_file = open("Outputs/" + file_name + ".json", "w")
-        text_file.write(self.data)
+        file_path = file_path if os.path.isdir(file_path) else 'Outputs/'
 
+        text_file = open(file_path + file_name + ".json", "w")
+        text_file.write(self.data)
         text_file.close()
 
     def get_message_count(self) -> int:

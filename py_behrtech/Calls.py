@@ -6,7 +6,7 @@ from requests.exceptions import RequestException
 from urllib3.exceptions import MaxRetryError, ConnectTimeoutError
 
 
-class ApiCall:
+class Calls:
     """
     Is a class for connecting to and accessing messages on BehrTech's industrial gateways
     """
