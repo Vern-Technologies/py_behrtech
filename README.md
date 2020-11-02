@@ -5,6 +5,20 @@
 
 A python wrapper for BehrTech's Mythings Central REST API. Currently supporting version 3.0.0
 
+## Status
+
+This package is a work in progress. Currently working to get all API endpoints implemented with checks on each returned status code.
+
+- [] azurefunctionDelete
+- [] azurefunctionFunctionIDDelete
+- [] azurefunctionFunctionIDGet
+- [] azurefunctionGet
+- [] azurefunctionPost
+- [] azurefunctionDelete
+- [] azuremappingGet
+- [] azuremappingMappingIDDelete
+- [] azuremappingMappingIDGet
+- [] azuremappingPost
 
 ## License
 

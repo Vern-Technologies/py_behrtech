@@ -1,39 +1,45 @@
 
 import os
 import json
+from requests import Response
 from datetime import datetime
 
+from .json_parsers import JSONParser
 
-class Parser:
+
+class Parser(JSONParser):
     """
     Is the base class for breaking data returned from a gateway computer from BehrTech into usable components. Provides
     stander functions that apply to all sensor types connected to a gateway.
     """
 
-    def __init__(self):
-        self.data = None
+    def __init__(self, req: Response):
+        JSONParser.__init__(self)
+        self.response: Response = req
+        self.data: str = req.text
 
-    def set_data_message(self, message: str):
+    def __repr__(self):
+        return f"Parser object for request at {self.response.url} with status code {self.response.status_code}"
+
+    def set_response(self, response: Response):
         """
-        Sets the data of the class from the message query of the gateway computer
+        Sets the response of the class to the passed in requests Response. Also resets the data of the class from the
+        text of the passed in Response.
 
-        :param message: Is the data returned from querying the gateway computer
-        """
-        self.data = message
-
-    def set_data_file(self, file_path: os.path):
-        """
-        Sets the data of the class loaded from a file
-
-        :param file_path: Is the file to load data from
+        :param response: request Response
         """
 
-        if os.path.exists(file_path):
-            with open(file_path, "r") as file_read:
-                self.data = file_read.read()
+        self.response = response
+        self.data = response.text
 
-        else:
-            print("Provided file path doesn't exits, pass in an absolute file path")
+    def get_response(self):
+        """
+        Returns the response of the class
+
+        :return: The response of the class
+        """
+
+        return self.response
 
     def get_data(self):
         """
@@ -64,10 +70,7 @@ class Parser:
         :return: The message count total
         """
 
-        data = json.loads(self.data)
-        count = data.get("count")
-
-        return count
+        return json.loads(self.data).get("count")
 
     def get_component_data(self, component: str):
         """
@@ -436,3 +439,31 @@ class Parser:
             if check_eui:
                 if check_eui == eui_number:
                     return index + 1
+
+    # TODO: rewrite functions
+
+    # def get_components(self, ep_eui: str) -> list:
+    #     """
+    #     Returns a list of measured components for the specified sensor
+    #
+    #     :param ep_eui:  The unique identifier of a node
+    #     :return: List of measured components
+    #     """
+    #
+    #     sens_type = json.loads(self.get_node(ep_eui=ep_eui).text).get('type')
+    #     components = json.loads(self.get_node_model(model_type=sens_type).text).get('components')
+    #
+    #     return [x for x in components]
+    #
+    # def get_units(self, ep_eui: str) -> dict:
+    #     """
+    #     Returns a dict of units for measured components for the specified sensor
+    #
+    #     :param ep_eui: The unique identifier of a node
+    #     :return: Dict of units for measured components
+    #     """
+    #
+    #     sens_type = json.loads(self.get_node(ep_eui=ep_eui).text).get('type')
+    #     components = json.loads(self.get_node_model(model_type=sens_type).text).get('components')
+    #
+    #     return {x: components.get(x)['unit'] for x in components}

@@ -3,13 +3,10 @@ import json
 from datetime import datetime
 from typing import Union
 
-from py_behrtech.Parser import Parser
 
-
-class JSONParser(Parser):
+class JSONParser:
 
     def __init__(self):
-        Parser.__init__(self)
         self.data = None
 
     def get_rxData_messages(self) -> str:
