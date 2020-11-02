@@ -9,8 +9,9 @@ A python wrapper for BehrTech's Mythings Central REST API. Currently supporting 
 
 This package is a work in progress. Currently working to get all API endpoints implemented with checks on each returned status code.
 
-### Task List
+### Endpoints Check List
 
+##### Azure
 - [ ] azurefunctionDelete
 - [ ] azurefunctionFunctionIDDelete
 - [ ] azurefunctionFunctionIDGet
@@ -22,6 +23,70 @@ This package is a work in progress. Currently working to get all API endpoints i
 - [ ] azuremappingMappingIDGet
 - [ ] azuremappingPost
 
+##### Base Station
+- [ ] systemBasestationBsEuiConfigGet
+- [ ] systemBasestationBsEuiConfigPost
+- [ ] systemBasestationBsEuiDelete
+- [ ] systemBasestationBsEuiGet
+- [ ] systemBasestationBsEuiPost
+
+##### MQTT
+- [ ] brokerBrokerIDDelete
+- [ ] brokerBrokerIDGet
+- [ ] brokerBrokerIDPost
+- [ ] brokerDelete
+- [ ] brokerGet
+- [ ] brokerPost
+- [ ] mqttmappingDelete
+- [ ] mqttmappingGet
+- [ ] mqttmappingPost
+- [ ] mqttmappingMappingIDDelete
+- [ ] mqttmappingMappingIDGet
+
+##### Messages
+- [ ] messagesDelete
+- [x] messagesGet
+- [ ] messagesPost
+
+##### Nodes
+- [ ] nodesDelete
+- [ ] nodesEpEuiDelete
+- [ ] nodesEpEuiGet
+- [ ] nodesEpEuiTxdataDelete
+- [ ] nodesEpEuiTxdataGet
+- [ ] nodesEpEuiTxdataPost
+- [ ] nodesGet
+- [ ] nodesPost
+
+##### Plugin
+- [ ] pluginAcceptGet
+- [ ] pluginAcceptPost
+- [ ] pluginPluginNameArbitraryPathGet
+- [ ] pluginPluginNameDelete
+- [ ] pluginPluginNameGet
+- [ ] pluginPluginNameMappingDelete
+- [ ] pluginPluginNameMappingGet
+- [ ] pluginPluginNameMappingPost
+- [ ] pluginPluginNameMappingEpEuiDelete
+- [ ] pluginRegisterGet
+
+##### Sensor Models
+- [ ] sensormodelsDelete
+- [ ] sensormodelsGet
+- [ ] sensormodelsPost
+- [ ] sensormodelsSensorTypeDelete
+- [ ] sensormodelsSensorTypeGet
+- [ ] sensormodelsSensorTypePost
+
+##### System
+- [ ] authTicketGet
+- [x] loginPost
+- [ ] systemDatabasedumpGet
+- [ ] systemDatabasedumpIdDelete
+- [ ] systemDatabasedumpIdGet
+- [ ] systemGet
+- [ ] wsGet
+ 
 ## License
 
 Fetch_BehrTech is released under the [MIT](https://opensource.org/licenses/MIT) license
