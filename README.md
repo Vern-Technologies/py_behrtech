@@ -44,7 +44,7 @@ This package is a work in progress. Currently working to get all API endpoints i
 - [ ] mqttmappingMappingIDGet
 
 ##### Messages
-- [ ] messagesDelete
+- [x] messagesDelete
 - [x] messagesGet
 - [ ] messagesPost
 
@@ -72,10 +72,10 @@ This package is a work in progress. Currently working to get all API endpoints i
 
 ##### Sensor Models
 - [ ] sensormodelsDelete
-- [ ] sensormodelsGet
+- [x] sensormodelsGet
 - [ ] sensormodelsPost
 - [ ] sensormodelsSensorTypeDelete
-- [ ] sensormodelsSensorTypeGet
+- [x] sensormodelsSensorTypeGet
 - [ ] sensormodelsSensorTypePost
 
 ##### System
