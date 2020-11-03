@@ -81,5 +81,3 @@ class Messages:
     def messages_post(self):
         # TODO: build this function
         pass
-
-
