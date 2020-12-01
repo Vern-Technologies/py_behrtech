@@ -51,11 +51,11 @@ This package is a work in progress. Currently working to get all API endpoints i
 ##### Nodes
 - [ ] nodesDelete
 - [ ] nodesEpEuiDelete
-- [ ] nodesEpEuiGet
+- [x] nodesEpEuiGet
 - [ ] nodesEpEuiTxdataDelete
 - [ ] nodesEpEuiTxdataGet
 - [ ] nodesEpEuiTxdataPost
-- [ ] nodesGet
+- [x] nodesGet
 - [ ] nodesPost
 
 ##### Plugin
@@ -79,13 +79,13 @@ This package is a work in progress. Currently working to get all API endpoints i
 - [ ] sensormodelsSensorTypePost
 
 ##### System
-- [ ] authTicketGet
+- [x] authTicketGet
 - [x] loginPost
 - [ ] systemDatabasedumpGet
 - [ ] systemDatabasedumpIdDelete
 - [ ] systemDatabasedumpIdGet
-- [ ] systemGet
-- [ ] wsGet
+- [x] systemGet
+- [x] wsGet
  
 ## License
 

@@ -1,8 +1,7 @@
-
 import requests
 
 from py_behrtech.parsers import Parser
-from py_behrtech.exceptions import JWTError, PermissionsError, QueryError
+from py_behrtech.exceptions import check_status_code
 
 
 class Models:
@@ -12,27 +11,17 @@ class Models:
         self.password = None
         self.server_address = None
         self.jwt_token = None
-        self.req = None
-
-    @property
-    def check_status_code(self):
-        if self.req.status_code == 400:
-            raise QueryError(url=self.req.url, message="Endpoint is invalid or was built incorrectly")
-        elif self.req.status_code == 401:
-            raise JWTError(message="JWT Access token is missing or invalid")
-        elif self.req.status_code == 403:
-            raise PermissionsError(message="User doesn't have the correct permissions to access this data")
-        elif self.req.status_code == 404:
-            raise QueryError(url=self.req.url, message="Endpoint is invalid or was built incorrectly")
 
     def models_delete(self):
         pass
 
     def models_get(self, return_count: int = '', offset: int = ''):
         """
-        Gets information on all registered node models from the gateway.
+        Gets information on all registered node models
 
-        :return: Requested data for all node models from the gateway
+        :param return_count: The amount of node models to be requested. (-1 for all)
+        :param offset: Node model amount to start the request from
+        :return: Parser object of configured node models
         """
 
         parameters = ''
@@ -42,13 +31,13 @@ class Models:
         if offset:
             parameters += (f"&offset={offset}" if parameters else f"?offset={offset}")
 
-        self.req = requests.get(url=self.server_address + f"/v2/sensormodels" + parameters,
-                                headers={"Authorization": f"Bearer {self.jwt_token}"})
+        req = requests.get(url=self.server_address + f"/v2/sensormodels" + parameters,
+                           headers={"Authorization": f"Bearer {self.jwt_token}"})
 
-        if self.req.status_code == 200:
-            return Parser(req=self.req)
+        if req.status_code == 200:
+            return Parser(req=req)
         else:
-            self.check_status_code()
+            check_status_code(req=req)
 
     def models_post(self):
         pass
@@ -58,19 +47,19 @@ class Models:
 
     def models_type_get(self, model_type: str):
         """
-        Gets information on a requested registered node model from the gateway
+        Gets information on a registered node model
 
         :param model_type: Unique identifier of the node model to be requested
-        :return: Requested node model data from the gateway
+        :return: Parser object of configured node model
         """
 
-        self.req = requests.get(url=self.server_address + f"/v2/sensormodels/{model_type}",
-                                headers={"Authorization": f"Bearer {self.jwt_token}"})
+        req = requests.get(url=self.server_address + f"/v2/sensormodels/{model_type}",
+                           headers={"Authorization": f"Bearer {self.jwt_token}"})
 
-        if self.req.status_code == 200:
-            return Parser(req=self.req)
+        if req.status_code == 200:
+            return Parser(req=req)
         else:
-            self.check_status_code()
+            check_status_code(req=req)
 
     def models_type_post(self):
         pass

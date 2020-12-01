@@ -87,31 +87,6 @@ class Calls(Azure, BaseStation, Messages, Models, Mqtt, Nodes, Plugins, System):
         else:
             return False
 
-    def get_all_nodes(self, return_count: int, offset: int) -> Parser:
-        """
-        Returns data on all connected nodes from the gateway.
-
-        :param return_count: Is the amount of nodes to be requested
-        :param offset: Is the node count to start the node data request from
-        :return: the requested node data from the gateway
-        """
-
-        message = self.server_address + f"/v2/nodes?returnCount={return_count}&offset={offset}"
-
-        return Parser(requests.get(message, headers={"Authorization": f"Bearer {self.jwt_token}"}))
-
-    def get_node(self, ep_eui: str) -> Parser:
-        """
-        Returns data on a requested node from the gateway.
-
-        :param ep_eui: Is the unique identifier of the node to be requested
-        :return: the requested node data from the gateway
-        """
-
-        message = self.server_address + f"/v2/nodes/{ep_eui}"
-
-        return Parser(requests.get(message, headers={"Authorization": f"Bearer {self.jwt_token}"}))
-
     def get_MQTT_mappings(self, return_count: int, offset: int) -> Parser:
         """
         Returns data on all setup MQTT Topics from the gateway.
@@ -147,28 +122,6 @@ class Calls(Azure, BaseStation, Messages, Models, Mqtt, Nodes, Plugins, System):
         """
 
         message = self.server_address + f"/v2/broker/{broker_id}"
-
-        return Parser(requests.get(message, headers={"Authorization": f"Bearer {self.jwt_token}"}))
-
-    def get_auth_ticker(self) -> Parser:
-        """
-        Returns data on auth ticketers.
-
-        :return: the requested MQTT Topic data from the gateway
-        """
-
-        message = self.server_address + "/v2/auth/ticket"
-
-        return Parser(requests.get(message, headers={"Authorization": f"Bearer {self.jwt_token}"}))
-
-    def get_gateway_data(self) -> Parser:
-        """
-        Returns data on the configured gateways.
-
-        :return: the requested gateway data
-        """
-
-        message = self.server_address + "/v2/system"
 
         return Parser(requests.get(message, headers={"Authorization": f"Bearer {self.jwt_token}"}))
 
