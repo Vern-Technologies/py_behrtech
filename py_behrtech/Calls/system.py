@@ -1,9 +1,6 @@
 import requests
 
-from requests.exceptions import RequestException
-from urllib3.exceptions import MaxRetryError, ConnectTimeoutError
-from py_behrtech.parsers import Parser
-from py_behrtech.exceptions import JWTError, check_status_code
+from py_behrtech.exceptions import check_status_code
 
 
 class System:
@@ -44,7 +41,7 @@ class System:
         else:
             check_status_code(req=req)
 
-    def systemGet(self) -> Parser:
+    def systemGet(self) -> dict:
         """
         Gets system status information
 
@@ -55,11 +52,11 @@ class System:
                            headers={"Authorization": f"Bearer {self.jwt_token}"})
 
         if req.status_code == 200:
-            return Parser(req=req)
+            return req.json()
         else:
             check_status_code(req=req)
 
-    def wsGet(self, access_token: str = None) -> Parser:
+    def wsGet(self, access_token: str = None) -> dict:
         """
         Request an upgrade to a websocket connection (Handshake is handled by goland http upgrader)
 
@@ -73,6 +70,6 @@ class System:
                            headers={"Authorization": f"Bearer {self.jwt_token}"})
 
         if req.status_code == 200:
-            return Parser(req=req)
+            return req.json()
         else:
             check_status_code(req=req)

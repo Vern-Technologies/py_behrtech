@@ -35,7 +35,7 @@ class User:
 
     def userGet(self) -> dict:
         """
-        Retrieves all registered users, only accessible for admin users
+        Gets information on all registered users, only accessible for admin users
 
         :return: All registered users
         """
@@ -44,7 +44,7 @@ class User:
                            headers={"Authorization": f"Bearer {self.jwt_token}"})
 
         if req.status_code == 200:
-            return req.text
+            return req.json()
         else:
             check_status_code(req=req)
 
@@ -87,7 +87,7 @@ class User:
 
     def userUUIDGet(self, uuid: str) -> dict:
         """
-        Retrieves user information for the specified user, only accessible for admin users
+        Gets user information for the specified user, only accessible for admin users
 
         :param uuid: Unique user ID
         :return: User profile information

@@ -1,7 +1,7 @@
 import requests
 
-from py_behrtech.parsers import Parser
 from py_behrtech.exceptions import check_status_code
+from py_behrtech.Calls.functions import buildParameter
 
 
 class Nodes:
@@ -12,43 +12,69 @@ class Nodes:
         self.server_address = None
         self.jwt_token = None
 
-    def nodesEpEuiGet(self, ep_eui: str):
+    def nodesEpEuiGet(self, epEui: str) -> dict:
         """
-        Gets information on a configured node with the matching EpEui
+        Gets information on a configured node with the matching epEui
 
-        :param ep_eui: The unique epEui number of the node to be requested
-        :return: Parser object of the configured node
+        :param epEui: The unique epEui of the node to be requested
+        :return: Information on the requested node
         """
-        req = requests.get(url=self.server_address + f"/v2/nodes/{ep_eui}", verify=False,
+
+        req = requests.get(url=self.server_address + f"/v2/nodes/{epEui}", verify=False,
                            headers={"Authorization": f"Bearer {self.jwt_token}"})
 
         if req.status_code == 200:
-            return Parser(req=req)
+            return req.json()
         else:
             check_status_code(req=req)
 
-    def nodesGet(self, return_count: int = '', offset: int = '', sensor_type: str = ''):
+    def nodesEpEuiTxDataGet(self, epEui: str) -> dict:
+        """
+        Gets downlink information on a configured node with the matching epEui
+
+        :param epEui: Unique epEui of the node to be requested
+        :return: Information on the requested node
+        """
+
+        req = requests.get(url=self.server_address + f"/v2/nodes/{epEui}/txdata", verify=False,
+                           headers={"Authorization": f"Bearer {self.jwt_token}"})
+
+        if req.status_code == 200:
+            return req.json()
+        else:
+            check_status_code(req=req)
+
+    def nodesEpEuiTxDataIdGet(self, epEui: str, messageId: str) -> dict:
+        """
+        Gets a specific requested downlink message
+
+        :param epEui: Unique epEui of the node to request downlink message for
+        :param messageId: Unique ID of the message to be requested
+        :return: Message information of the requested node
+        """
+
+        req = requests.get(url=self.server_address + f"/v2/nodes/{epEui}/txdata/{messageId}", verify=False,
+                           headers={"Authorization": f"Bearer {self.jwt_token}"})
+
+        if req.status_code == 200:
+            return req.json()
+        else:
+            check_status_code(req=req)
+
+    def nodesGet(self, returnCount: int = '', offset: int = '', sensor_type: str = '') -> dict:
         """
         Gets information on all configured nodes
 
-        :param return_count: The amount of nodes to be requested. (-1 for all)
+        :param returnCount: The amount of nodes to be requested. (-1 for all)
         :param offset: Node amount to start the request from
         :param sensor_type: Node type to be requested
         :return: Parser object of configured nodes
         """
-        parameters = ''
 
-        if return_count:
-            parameters += f"?returnCount={return_count}"
-        if offset:
-            parameters += (f"&offset={offset}" if parameters else f"?offset={offset}")
-        if sensor_type:
-            parameters += (f"&sensorType={sensor_type}" if parameters else f"?sensorType={sensor_type}")
-
-        req = requests.get(url=self.server_address + f"/v2/nodes" + parameters, verify=False,
+        req = requests.get(url=self.server_address + f"/v2/nodes" + buildParameter(params=vars()), verify=False,
                            headers={"Authorization": f"Bearer {self.jwt_token}"})
 
         if req.status_code == 200:
-            return Parser(req=req)
+            return req.json()
         else:
             check_status_code(req=req)

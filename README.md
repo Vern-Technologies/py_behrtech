@@ -20,7 +20,7 @@ azurefunctionFunctionIDGet | :x:
 azurefunctionGet | :x:
 azurefunctionPost | :x:
 azurefunctionDelete | :x:
-azuremappingGet | :x:
+azuremappingGet | :white_check_mark:
 azuremappingMappingIDDelete | :x:
 azuremappingMappingIDGet | :x:
 azuremappingPost | :x:
@@ -38,16 +38,16 @@ systemBasestationBsEuiPost | :x:
 EndPoint | Done
 :--- | :---
 brokerBrokerIDDelete | :x:
-brokerBrokerIDGet | :x:
+brokerBrokerIDGet | :white_check_mark:
 brokerBrokerIDPost | :x:
 brokerDelete | :x:
-brokerGet | :x:
+brokerGet | :white_check_mark:
 brokerPost | :x:
 mqttmappingDelete | :x:
-mqttmappingGet | :x:
+mqttmappingGet | :white_check_mark:
 mqttmappingPost | :x:
 mqttmappingMappingIDDelete | :x:
-mqttmappingMappingIDGet | :x:
+mqttmappingMappingIDGet | :white_check_mark:
 
 ### Messages
 EndPoint | Done
@@ -64,9 +64,9 @@ nodesEpEuiDelete | :x:
 nodesEpEuiGet | :white_check_mark:
 nodesEpEuiPost | :x:
 nodesEpEuiTxdataDelete | :x:
-nodesEpEuiTxdataGet | :x:
+nodesEpEuiTxdataGet | :white_check_mark:
 nodesEPEuiTxdataIdDelete | :x:
-nodesEpEuiTxdataIdGet | :x:
+nodesEpEuiTxdataIdGet | :white_check_mark:
 nodesEpEuiTxdataIdPost   | :x:
 nodesEpEuiTxdataPost | :x:
 nodesGet | :white_check_mark:

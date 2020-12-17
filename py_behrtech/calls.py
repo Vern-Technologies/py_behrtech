@@ -1,13 +1,10 @@
 
-import requests
-from .parsers import Parser
-from .exceptions import JWTError, PermissionsError, QueryError
 from .Calls import Azure, BaseStation, Messages, Models, Mqtt, Nodes, Plugins, System, User
 
 
 class Calls(Azure, BaseStation, Messages, Models, Mqtt, Nodes, Plugins, System, User):
     """
-    Is a class for connecting to and accessing messages on BehrTech's industrial gateways
+    Class for handling API requests to BehrTech's industrial gateways
     """
 
     def __init__(self, username: str, password: str, server_address: str):
@@ -22,7 +19,7 @@ class Calls(Azure, BaseStation, Messages, Models, Mqtt, Nodes, Plugins, System, 
         User.__init__(self)
         self.username = username
         self.password = password
-        self.server_address = server_address
+        self.server_address = f"https://{server_address}:443"
         self.jwt_token = self.login()
 
     def __repr__(self):
@@ -87,52 +84,3 @@ class Calls(Azure, BaseStation, Messages, Models, Mqtt, Nodes, Plugins, System, 
             return True
         else:
             return False
-
-    def get_MQTT_mappings(self, return_count: int, offset: int) -> Parser:
-        """
-        Returns data on all setup MQTT Topics from the gateway.
-
-        :param return_count: Is the amount of MQTT Topics to be requested
-        :param offset: Is the MQTT Topic count to start the MQTT Topic data request from
-        :return: the requested MQTT Topic data from the gateway
-        """
-
-        message = self.server_address + f"/v2/mqttmapping?returnCount={return_count}&offset={offset}"
-
-        return Parser(requests.get(message, headers={"Authorization": f"Bearer {self.jwt_token}"}))
-
-    def get_all_MQTT_brokers(self, return_count: int, offset: int) -> Parser:
-        """
-        Returns data on all setup MQTT Brokers from the gateway.
-
-        :param return_count: Is the amount of MQTT Brokers to be requested
-        :param offset: Is the MQTT Broker count to start the MQTT Broker data request from
-        :return: the requested MQTT Broker data from the gateway
-        """
-
-        message = self.server_address + f"/v2/broker?returnCount={return_count}&offset={offset}"
-
-        return Parser(requests.get(message, headers={"Authorization": f"Bearer {self.jwt_token}"}))
-
-    def get_MQTT_broker(self, broker_id: str) -> Parser:
-        """
-        Returns data on a requested MQTT Broker from the gateway.
-
-        :param broker_id: Is the unique identifier of the MQTT Broker to be requested
-        :return: the requested MQTT Broker data from the gateway
-        """
-
-        message = self.server_address + f"/v2/broker/{broker_id}"
-
-        return Parser(requests.get(message, headers={"Authorization": f"Bearer {self.jwt_token}"}))
-
-    def get_azure_mapping(self) -> Parser:
-        """
-        Returns data for setup Azure connections on the gateway.
-
-        :return: the requested Azure connection data
-        """
-
-        message = self.server_address + "/v2/azuremapping"
-
-        return Parser(requests.get(message, headers={"Authorization": f"Bearer {self.jwt_token}"}))

@@ -1,3 +1,4 @@
+import py_behrtech.Calls.functions
 
 from py_behrtech.Calls.azure import Azure
 from py_behrtech.Calls.base_station import BaseStation
