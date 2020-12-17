@@ -19,7 +19,7 @@ class Nodes:
         :param ep_eui: The unique epEui number of the node to be requested
         :return: Parser object of the configured node
         """
-        req = requests.get(url=self.server_address + f"/v2/nodes/{ep_eui}",
+        req = requests.get(url=self.server_address + f"/v2/nodes/{ep_eui}", verify=False,
                            headers={"Authorization": f"Bearer {self.jwt_token}"})
 
         if req.status_code == 200:
@@ -45,7 +45,7 @@ class Nodes:
         if sensor_type:
             parameters += (f"&sensorType={sensor_type}" if parameters else f"?sensorType={sensor_type}")
 
-        req = requests.get(url=self.server_address + f"/v2/nodes" + parameters,
+        req = requests.get(url=self.server_address + f"/v2/nodes" + parameters, verify=False,
                            headers={"Authorization": f"Bearer {self.jwt_token}"})
 
         if req.status_code == 200:

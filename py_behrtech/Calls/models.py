@@ -31,7 +31,7 @@ class Models:
         if offset:
             parameters += (f"&offset={offset}" if parameters else f"?offset={offset}")
 
-        req = requests.get(url=self.server_address + f"/v2/sensormodels" + parameters,
+        req = requests.get(url=self.server_address + f"/v2/sensormodels" + parameters, verify=False,
                            headers={"Authorization": f"Bearer {self.jwt_token}"})
 
         if req.status_code == 200:
@@ -53,7 +53,7 @@ class Models:
         :return: Parser object of configured node model
         """
 
-        req = requests.get(url=self.server_address + f"/v2/sensormodels/{model_type}",
+        req = requests.get(url=self.server_address + f"/v2/sensormodels/{model_type}", verify=False,
                            headers={"Authorization": f"Bearer {self.jwt_token}"})
 
         if req.status_code == 200:

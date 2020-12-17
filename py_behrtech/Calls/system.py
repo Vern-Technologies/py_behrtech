@@ -21,7 +21,7 @@ class System:
         :return: Parser object of ticket information
         """
 
-        req = requests.get(url=self.server_address + f"/v2/auth/ticket",
+        req = requests.get(url=self.server_address + f"/v2/auth/ticket", verify=False,
                            headers={"Authorization": f"Bearer {self.jwt_token}"})
 
         if req.status_code == 200:
@@ -29,27 +29,20 @@ class System:
         else:
             check_status_code(req=req)
 
-    def login(self) -> str:
+    def systemEulaGet(self) -> str:
         """
-        Gets the JWT token of the login endpoint
+        Gets the end user license agreement
 
-        :return: The JWT token of the login endpoint
+        :return: The end user license agreement
         """
-        try:
-            req = requests.post(
-                self.server_address + "/v2/login",
-                json={'user': self.username, 'password': self.password},
-                timeout=3
-            )
 
-            if req.status_code == 200:
-                # Successfully logged in
-                return req.json().get("JWT")
-            else:
-                check_status_code(req=req)
+        req = requests.get(url=self.server_address + f"/v2/system/eula", verify=False,
+                           headers={"Authorization": f"Bearer {self.jwt_token}"})
 
-        except (TimeoutError, ConnectTimeoutError, MaxRetryError, RequestException):
-            raise JWTError(message="The wrong server IP address or login credentials were provided")
+        if req.status_code == 200:
+            return req.json().get("EULA")
+        else:
+            check_status_code(req=req)
 
     def systemGet(self) -> Parser:
         """
@@ -58,7 +51,7 @@ class System:
         :return: Parser object of system status information
         """
 
-        req = requests.get(url=self.server_address + f"/v2/system",
+        req = requests.get(url=self.server_address + f"/v2/system", verify=False,
                            headers={"Authorization": f"Bearer {self.jwt_token}"})
 
         if req.status_code == 200:
@@ -76,7 +69,7 @@ class System:
         if not access_token:
             access_token = self.authTicketGet()
 
-        req = requests.get(url=self.server_address + f"/v2/ws?accessToken={access_token}",
+        req = requests.get(url=self.server_address + f"/v2/ws?accessToken={access_token}",  verify=False,
                            headers={"Authorization": f"Bearer {self.jwt_token}"})
 
         if req.status_code == 200:

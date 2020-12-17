@@ -3,11 +3,11 @@
 
 # py_behrtech
 
-A python wrapper for BehrTech's Mythings Central REST API. Currently supporting version 3.0.0
+A python wrapper for BehrTech's Mythings Central REST API. Currently, supporting version 3.1.0.
 
 ## Status
 
-This package is a work in progress. Currently working to get all API endpoints implemented with checks on each returned status code.
+This package is a work in progress. Currently, working to get all API endpoints implemented with checks on each returned status code.
 
 ### Endpoints Check List
 
@@ -52,8 +52,12 @@ This package is a work in progress. Currently working to get all API endpoints i
 - [ ] nodesDelete
 - [ ] nodesEpEuiDelete
 - [x] nodesEpEuiGet
+- [ ] nodesEpEuiPost  
 - [ ] nodesEpEuiTxdataDelete
 - [ ] nodesEpEuiTxdataGet
+- [ ] nodesEPEuiTxdataIdDelete
+- [ ] nodesEpEuiTxdataIdGet
+- [ ] nodesEpEuiTxdataIdPost  
 - [ ] nodesEpEuiTxdataPost
 - [x] nodesGet
 - [ ] nodesPost
@@ -80,12 +84,21 @@ This package is a work in progress. Currently working to get all API endpoints i
 
 ##### System
 - [x] authTicketGet
-- [x] loginPost
 - [ ] systemDatabasedumpGet
 - [ ] systemDatabasedumpIdDelete
 - [ ] systemDatabasedumpIdGet
+- [x] systemEulaGet  
 - [x] systemGet
 - [x] wsGet
+ 
+#### User
+- [x] loginPost
+- [x] userGet
+- [x] userPost
+- [x] userUUIDDelete
+- [x] userUUIDGet
+- [x] userUUIDProfilePost
+- [x] userUUIDResetPasswordPost
  
 ## License
 

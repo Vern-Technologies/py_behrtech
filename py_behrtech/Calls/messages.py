@@ -12,15 +12,15 @@ class Messages:
         self.server_address = None
         self.jwt_token = None
 
-    def messages_delete(self, deleteAll: bool = False):
+    def messages_delete(self, delete: bool = False):
         """
         Deletes all messages from the gateways
 
-        :param deleteAll: Verifies deletion was on purpose
+        :param delete: Verifies deletion was on purpose
         :return: Parser object for deleted messages
         """
 
-        req = requests.delete(url=self.server_address + f"/v2/messages", params={'deleteAll': deleteAll},
+        req = requests.delete(url=self.server_address + f"/v2/messages", verify=False, params={'deleteAll': delete},
                               headers={"Authorization": f"Bearer {self.jwt_token}"})
 
         if req.status_code == 200:
@@ -57,7 +57,7 @@ class Messages:
         if sensorType:
             parameters += f"&sensorType={sensorType}" if parameters else f"?sensorType={sensorType}"
 
-        req = requests.get(url=self.server_address + f"/v2/messages" + parameters,
+        req = requests.get(url=self.server_address + f"/v2/messages" + parameters, verify=False,
                            headers={"Authorization": f"Bearer {self.jwt_token}"})
 
         if req.status_code == 200:
@@ -66,5 +66,4 @@ class Messages:
             check_status_code(req=req)
 
     def messages_post(self):
-        # TODO: build this function
         pass

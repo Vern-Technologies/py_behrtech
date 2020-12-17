@@ -10,13 +10,13 @@ def check_status_code(req: Response):
     """
 
     if req.status_code == 400:
-        raise QueryError(url=req.url, message="Endpoint is invalid or was built incorrectly")
+        raise QueryError(status_code=400, url=req.url, message="Endpoint is invalid or was built incorrectly")
     elif req.status_code == 401:
-        raise JWTError(message="JWT Access token is missing or invalid credentials were provided")
+        raise JWTError(status_code=401, message="JWT Access token is missing or invalid credentials were provided")
     elif req.status_code == 403:
-        raise PermissionsError(message="User doesn't have the correct permissions to access this data")
+        raise PermissionsError(status_code=403, message="User doesn't have the correct permissions to access this data")
     elif req.status_code == 404:
-        raise QueryError(url=req.url, message="Endpoint is invalid or was built incorrectly")
+        raise QueryError(status_code=404, url=req.url, message="Endpoint is invalid or was built incorrectly")
 
 
 class PyBehrtechException(Exception):
@@ -27,20 +27,23 @@ class PyBehrtechException(Exception):
 class JWTError(PyBehrtechException):
     """A request for the JWT failed"""
 
-    def __init__(self, message):
-        PyBehrtechException.__init__(self, message)
+    def __init__(self, status_code, message):
+        self.status_code = status_code
+        PyBehrtechException.__init__(self, status_code, message)
 
 
 class PermissionsError(PyBehrtechException):
     """User of request doesn't have permissions"""
 
-    def __init__(self, message):
-        PyBehrtechException.__init__(self, message)
+    def __init__(self, status_code, message):
+        self.status_code = status_code
+        PyBehrtechException.__init__(self, status_code, message)
 
 
 class QueryError(PyBehrtechException):
     """Request to endpoint is invalid or was built incorrectly"""
 
-    def __init__(self, url, message):
+    def __init__(self, status_code, url, message):
+        self.status_code = status_code
         self.url = url
-        PyBehrtechException.__init__(self, url, message)
+        PyBehrtechException.__init__(self, status_code, url, message)

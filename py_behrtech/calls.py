@@ -2,10 +2,10 @@
 import requests
 from .parsers import Parser
 from .exceptions import JWTError, PermissionsError, QueryError
-from .Calls import Azure, BaseStation, Messages, Models, Mqtt, Nodes, Plugins, System
+from .Calls import Azure, BaseStation, Messages, Models, Mqtt, Nodes, Plugins, System, User
 
 
-class Calls(Azure, BaseStation, Messages, Models, Mqtt, Nodes, Plugins, System):
+class Calls(Azure, BaseStation, Messages, Models, Mqtt, Nodes, Plugins, System, User):
     """
     Is a class for connecting to and accessing messages on BehrTech's industrial gateways
     """
@@ -19,6 +19,7 @@ class Calls(Azure, BaseStation, Messages, Models, Mqtt, Nodes, Plugins, System):
         Nodes.__init__(self)
         Plugins.__init__(self)
         System.__init__(self)
+        User.__init__(self)
         self.username = username
         self.password = password
         self.server_address = server_address

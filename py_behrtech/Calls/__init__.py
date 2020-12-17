@@ -7,3 +7,4 @@ from py_behrtech.Calls.mqtt import Mqtt
 from py_behrtech.Calls.nodes import Nodes
 from py_behrtech.Calls.plugins import Plugins
 from py_behrtech.Calls.system import System
+from py_behrtech.Calls.user import User
