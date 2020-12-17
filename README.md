@@ -52,8 +52,8 @@ mqttmappingMappingIDGet | :x:
 ### Messages
 EndPoint | Done
 :--- | :---
-messagesDelete | :heavy_check_mark:
-messagesGet | :heavy_check_mark:
+messagesDelete | :white_check_mark:
+messagesGet | :white_check_mark:
 messagesPost | :x:
 
 ### Nodes
@@ -61,7 +61,7 @@ EndPoint | Done
 :--- | :---
 nodesDelete | :x:
 nodesEpEuiDelete | :x:
-nodesEpEuiGet | :heavy_check_mark:
+nodesEpEuiGet | :white_check_mark:
 nodesEpEuiPost | :x:
 nodesEpEuiTxdataDelete | :x:
 nodesEpEuiTxdataGet | :x:
@@ -69,7 +69,7 @@ nodesEPEuiTxdataIdDelete | :x:
 nodesEpEuiTxdataIdGet | :x:
 nodesEpEuiTxdataIdPost   | :x:
 nodesEpEuiTxdataPost | :x:
-nodesGet | :heavy_check_mark:
+nodesGet | :white_check_mark:
 nodesPost | :x:
 
 ### Plugin
@@ -90,33 +90,33 @@ pluginRegisterGet | :x:
 EndPoint | Done
 :--- | :---
 sensormodelsDelete | :x:
-sensormodelsGet | :heavy_check_mark:
+sensormodelsGet | :white_check_mark:
 sensormodelsPost | :x:
 sensormodelsSensorTypeDelete | :x:
-sensormodelsSensorTypeGet | :heavy_check_mark:
+sensormodelsSensorTypeGet | :white_check_mark:
 sensormodelsSensorTypePost | :x:
 
 ### System
 EndPoint | Done
 :--- | :---
-authTicketGet | :heavy_check_mark:
+authTicketGet | :white_check_mark:
 systemDatabasedumpGet | :x:
 systemDatabasedumpIdDelete | :x:
 systemDatabasedumpIdGet | :x:
-systemEulaGet | :heavy_check_mark:
-systemGet | :heavy_check_mark:
-wsGet | :heavy_check_mark:
+systemEulaGet | :white_check_mark:
+systemGet | :white_check_mark:
+wsGet | :white_check_mark:
  
 ### User
 EndPoint | Done
 :--- | :---
-loginPost | :heavy_check_mark:
-userGet | :heavy_check_mark:
-userPost | :heavy_check_mark:
-userUUIDDelete | :heavy_check_mark:
-userUUIDGet | :heavy_check_mark:
-userUUIDProfilePost | :heavy_check_mark:
-userUUIDResetPasswordPost | :heavy_check_mark:
+loginPost | :white_check_mark:
+userGet | :white_check_mark:
+userPost | :white_check_mark:
+userUUIDDelete | :white_check_mark:
+userUUIDGet | :white_check_mark:
+userUUIDProfilePost | :white_check_mark:
+userUUIDResetPasswordPost | :white_check_mark:
  
 ## License
 
