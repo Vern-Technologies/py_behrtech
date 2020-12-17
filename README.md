@@ -11,94 +11,112 @@ This package is a work in progress. Currently, working to get all API endpoints 
 
 ### Endpoints Check List
 
-##### Azure
-- [ ] azurefunctionDelete
-- [ ] azurefunctionFunctionIDDelete
-- [ ] azurefunctionFunctionIDGet
-- [ ] azurefunctionGet
-- [ ] azurefunctionPost
-- [ ] azurefunctionDelete
-- [ ] azuremappingGet
-- [ ] azuremappingMappingIDDelete
-- [ ] azuremappingMappingIDGet
-- [ ] azuremappingPost
+### Azure
+EndPoint | Done
+:--- | :---
+azurefunctionDelete | :x:
+azurefunctionFunctionIDDelete | :x:
+azurefunctionFunctionIDGet | :x:
+azurefunctionGet | :x:
+azurefunctionPost | :x:
+azurefunctionDelete | :x:
+azuremappingGet | :x:
+azuremappingMappingIDDelete | :x:
+azuremappingMappingIDGet | :x:
+azuremappingPost | :x:
 
-##### Base Station
-- [ ] systemBasestationBsEuiConfigGet
-- [ ] systemBasestationBsEuiConfigPost
-- [ ] systemBasestationBsEuiDelete
-- [ ] systemBasestationBsEuiGet
-- [ ] systemBasestationBsEuiPost
+### Base Station
+EndPoint | Done
+:--- | :---
+systemBasestationBsEuiConfigGet | :x:
+systemBasestationBsEuiConfigPost | :x:
+systemBasestationBsEuiDelete | :x:
+systemBasestationBsEuiGet | :x:
+systemBasestationBsEuiPost | :x:
 
-##### MQTT
-- [ ] brokerBrokerIDDelete
-- [ ] brokerBrokerIDGet
-- [ ] brokerBrokerIDPost
-- [ ] brokerDelete
-- [ ] brokerGet
-- [ ] brokerPost
-- [ ] mqttmappingDelete
-- [ ] mqttmappingGet
-- [ ] mqttmappingPost
-- [ ] mqttmappingMappingIDDelete
-- [ ] mqttmappingMappingIDGet
+### MQTT
+EndPoint | Done
+:--- | :---
+brokerBrokerIDDelete | :x:
+brokerBrokerIDGet | :x:
+brokerBrokerIDPost | :x:
+brokerDelete | :x:
+brokerGet | :x:
+brokerPost | :x:
+mqttmappingDelete | :x:
+mqttmappingGet | :x:
+mqttmappingPost | :x:
+mqttmappingMappingIDDelete | :x:
+mqttmappingMappingIDGet | :x:
 
-##### Messages
-- [x] messagesDelete
-- [x] messagesGet
-- [ ] messagesPost
+### Messages
+EndPoint | Done
+:--- | :---
+messagesDelete | :heavy_check_mark:
+messagesGet | :heavy_check_mark:
+messagesPost | :x:
 
-##### Nodes
-- [ ] nodesDelete
-- [ ] nodesEpEuiDelete
-- [x] nodesEpEuiGet
-- [ ] nodesEpEuiPost  
-- [ ] nodesEpEuiTxdataDelete
-- [ ] nodesEpEuiTxdataGet
-- [ ] nodesEPEuiTxdataIdDelete
-- [ ] nodesEpEuiTxdataIdGet
-- [ ] nodesEpEuiTxdataIdPost  
-- [ ] nodesEpEuiTxdataPost
-- [x] nodesGet
-- [ ] nodesPost
+### Nodes
+EndPoint | Done
+:--- | :---
+nodesDelete | :x:
+nodesEpEuiDelete | :x:
+nodesEpEuiGet | :heavy_check_mark:
+nodesEpEuiPost | :x:
+nodesEpEuiTxdataDelete | :x:
+nodesEpEuiTxdataGet | :x:
+nodesEPEuiTxdataIdDelete | :x:
+nodesEpEuiTxdataIdGet | :x:
+nodesEpEuiTxdataIdPost   | :x:
+nodesEpEuiTxdataPost | :x:
+nodesGet | :heavy_check_mark:
+nodesPost | :x:
 
-##### Plugin
-- [ ] pluginAcceptGet
-- [ ] pluginAcceptPost
-- [ ] pluginPluginNameArbitraryPathGet
-- [ ] pluginPluginNameDelete
-- [ ] pluginPluginNameGet
-- [ ] pluginPluginNameMappingDelete
-- [ ] pluginPluginNameMappingGet
-- [ ] pluginPluginNameMappingPost
-- [ ] pluginPluginNameMappingEpEuiDelete
-- [ ] pluginRegisterGet
+### Plugin
+EndPoint | Done
+:--- | :---
+pluginAcceptGet | :x:
+pluginAcceptPost | :x:
+pluginPluginNameArbitraryPathGet | :x:
+pluginPluginNameDelete | :x:
+pluginPluginNameGet | :x:
+pluginPluginNameMappingDelete | :x:
+pluginPluginNameMappingGet | :x:
+pluginPluginNameMappingPost | :x:
+pluginPluginNameMappingEpEuiDelete | :x:
+pluginRegisterGet | :x:
 
-##### Sensor Models
-- [ ] sensormodelsDelete
-- [x] sensormodelsGet
-- [ ] sensormodelsPost
-- [ ] sensormodelsSensorTypeDelete
-- [x] sensormodelsSensorTypeGet
-- [ ] sensormodelsSensorTypePost
+### Sensor Models
+EndPoint | Done
+:--- | :---
+sensormodelsDelete | :x:
+sensormodelsGet | :heavy_check_mark:
+sensormodelsPost | :x:
+sensormodelsSensorTypeDelete | :x:
+sensormodelsSensorTypeGet | :heavy_check_mark:
+sensormodelsSensorTypePost | :x:
 
-##### System
-- [x] authTicketGet
-- [ ] systemDatabasedumpGet
-- [ ] systemDatabasedumpIdDelete
-- [ ] systemDatabasedumpIdGet
-- [x] systemEulaGet  
-- [x] systemGet
-- [x] wsGet
+### System
+EndPoint | Done
+:--- | :---
+authTicketGet | :heavy_check_mark:
+systemDatabasedumpGet | :x:
+systemDatabasedumpIdDelete | :x:
+systemDatabasedumpIdGet | :x:
+systemEulaGet | :heavy_check_mark:
+systemGet | :heavy_check_mark:
+wsGet | :heavy_check_mark:
  
-#### User
-- [x] loginPost
-- [x] userGet
-- [x] userPost
-- [x] userUUIDDelete
-- [x] userUUIDGet
-- [x] userUUIDProfilePost
-- [x] userUUIDResetPasswordPost
+### User
+EndPoint | Done
+:--- | :---
+loginPost | :heavy_check_mark:
+userGet | :heavy_check_mark:
+userPost | :heavy_check_mark:
+userUUIDDelete | :heavy_check_mark:
+userUUIDGet | :heavy_check_mark:
+userUUIDProfilePost | :heavy_check_mark:
+userUUIDResetPasswordPost | :heavy_check_mark:
  
 ## License
 
