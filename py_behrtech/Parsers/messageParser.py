@@ -1,67 +1,30 @@
 
 import os
 import json
+
 from requests import Response
 from datetime import datetime
-
 from .json_parsers import JSONParser
+from py_behrtech.Parsers.defaults import Defaults
 
 
-class Parser(JSONParser):
+class MessageParser(JSONParser, Defaults):
     """
     Is the base class for breaking data returned from a gateway computer from BehrTech into usable components. Provides
     stander functions that apply to all sensor types connected to a gateway.
     """
 
     def __init__(self, req: Response):
+
+        def getCount():
+            count = json.loads(self.data).get('count')
+            return count if count is not None else 1
+
+        Defaults.__init__(self)
         JSONParser.__init__(self)
         self.response: Response = req
         self.data: str = req.text
-
-    def __repr__(self):
-        return f"Parser object for request at {self.response.url} with status code {self.response.status_code}"
-
-    def set_response(self, response: Response):
-        """
-        Sets the response of the class to the passed in requests Response. Also resets the data of the class from the
-        text of the passed in Response.
-
-        :param response: request Response
-        """
-
-        self.response = response
-        self.data = response.text
-
-    def get_response(self):
-        """
-        Returns the response of the class
-
-        :return: The response of the class
-        """
-
-        return self.response
-
-    def get_data(self):
-        """
-        Returns the data of the class
-
-        :return: The data of the class
-        """
-        return self.data
-
-    def write_data_to_file(self, file_name: str, file_path: os.path = 'Outputs/'):
-        """
-        Outputs the data of the class to a JSON file
-
-        :param file_path: The path to write the file to
-        :param file_name: The name of the file for the data of the class to be outputted to
-        """
-
-        file_path = file_path if os.path.isdir(file_path) else 'Outputs/'
-
-        text_file = open(file_path + file_name + ".json", "w")
-        text_file.write(self.data)
-        text_file.close()
+        self.count = getCount()
 
     def get_message_count(self) -> int:
         """
@@ -439,31 +402,3 @@ class Parser(JSONParser):
             if check_eui:
                 if check_eui == eui_number:
                     return index + 1
-
-    # TODO: rewrite functions
-
-    # def get_components(self, ep_eui: str) -> list:
-    #     """
-    #     Returns a list of measured components for the specified sensor
-    #
-    #     :param ep_eui:  The unique identifier of a node
-    #     :return: List of measured components
-    #     """
-    #
-    #     sens_type = json.loads(self.get_node(ep_eui=ep_eui).text).get('type')
-    #     components = json.loads(self.get_node_model(model_type=sens_type).text).get('components')
-    #
-    #     return [x for x in components]
-    #
-    # def get_units(self, ep_eui: str) -> dict:
-    #     """
-    #     Returns a dict of units for measured components for the specified sensor
-    #
-    #     :param ep_eui: The unique identifier of a node
-    #     :return: Dict of units for measured components
-    #     """
-    #
-    #     sens_type = json.loads(self.get_node(ep_eui=ep_eui).text).get('type')
-    #     components = json.loads(self.get_node_model(model_type=sens_type).text).get('components')
-    #
-    #     return {x: components.get(x)['unit'] for x in components}

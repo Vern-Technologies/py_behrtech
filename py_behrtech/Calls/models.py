@@ -2,6 +2,7 @@ import requests
 
 from py_behrtech.exceptions import check_status_code
 from py_behrtech.Calls.functions import buildParameter
+from py_behrtech.Parsers.modelParser import ModelParser
 
 
 class Models:
@@ -15,7 +16,7 @@ class Models:
     def sensorModelsDelete(self):
         pass
 
-    def sensorModelsGet(self, returnCount: int = '', offset: int = '') -> dict:
+    def sensorModelsGet(self, returnCount: int = '', offset: int = '') -> ModelParser:
         """
         Gets information on all registered node models
 
@@ -28,7 +29,7 @@ class Models:
                            headers={"Authorization": f"Bearer {self.jwt_token}"})
 
         if req.status_code == 200:
-            return req.json()
+            return ModelParser(req=req)
         else:
             check_status_code(req=req)
 
@@ -38,7 +39,7 @@ class Models:
     def sensorModelsSensorTypeDelete(self):
         pass
 
-    def sensorModelsSensorTypeGet(self, sensorType: str) -> dict:
+    def sensorModelsSensorTypeGet(self, sensorType: str) -> ModelParser:
         """
         Gets information on a registered node model
 
@@ -50,7 +51,7 @@ class Models:
                            headers={"Authorization": f"Bearer {self.jwt_token}"})
 
         if req.status_code == 200:
-            return req.json()
+            return ModelParser(req=req)
         else:
             check_status_code(req=req)
 

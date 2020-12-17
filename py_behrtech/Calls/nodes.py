@@ -2,6 +2,7 @@ import requests
 
 from py_behrtech.exceptions import check_status_code
 from py_behrtech.Calls.functions import buildParameter
+from py_behrtech.Parsers.nodeParser import NodeParser
 
 
 class Nodes:
@@ -12,7 +13,7 @@ class Nodes:
         self.server_address = None
         self.jwt_token = None
 
-    def nodesEpEuiGet(self, epEui: str) -> dict:
+    def nodesEpEuiGet(self, epEui: str) -> NodeParser:
         """
         Gets information on a configured node with the matching epEui
 
@@ -24,7 +25,7 @@ class Nodes:
                            headers={"Authorization": f"Bearer {self.jwt_token}"})
 
         if req.status_code == 200:
-            return req.json()
+            return NodeParser(req=req)
         else:
             check_status_code(req=req)
 
@@ -61,7 +62,7 @@ class Nodes:
         else:
             check_status_code(req=req)
 
-    def nodesGet(self, returnCount: int = '', offset: int = '', sensor_type: str = '') -> dict:
+    def nodesGet(self, returnCount: int = '', offset: int = '', sensor_type: str = '') -> NodeParser:
         """
         Gets information on all configured nodes
 
@@ -75,6 +76,6 @@ class Nodes:
                            headers={"Authorization": f"Bearer {self.jwt_token}"})
 
         if req.status_code == 200:
-            return req.json()
+            return NodeParser(req=req)
         else:
             check_status_code(req=req)

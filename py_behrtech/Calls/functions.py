@@ -13,8 +13,18 @@ def buildParameter(params: dict) -> str:
     for x in params:
         if x != 'self' and params[x]:
             if not parameters:
-                parameters += f'?{x}={params[x]}'
+                if x == 'start':
+                    parameters += f'?from={params[x]}'
+                elif x == 'end':
+                    parameters += f'?to={params[x]}'
+                else:
+                    parameters += f'?{x}={params[x]}'
             else:
-                parameters += f'&{x}={params[x]}'
+                if x == 'start':
+                    parameters += f'&from={params[x]}'
+                elif x == 'end':
+                    parameters += f'&to={params[x]}'
+                else:
+                    parameters += f'&{x}={params[x]}'
 
     return parameters
