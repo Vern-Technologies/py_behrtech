@@ -69,7 +69,7 @@ class System:
         if not access_token:
             access_token = self.authTicketGet()
 
-        req = requests.get(url=self.server_address + f"/v2/ws?accessToken={access_token}",  verify=False,
+        req = requests.get(url=self.server_address + f"/v2/ws?accessToken={access_token}", verify=False,
                            headers={"Authorization": f"Bearer {self.jwt_token}"})
 
         if req.status_code == 200:
