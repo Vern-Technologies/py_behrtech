@@ -267,12 +267,10 @@ class MessageParser(JSONParser, Defaults):
         messages = data.get("messages")
 
         for x in messages:
-            if x.get("command") == "rxData":
+            check = x.get("_id")
 
-                check = x.get("_id")
-
-                if check:
-                    ids.append(check)
+            if check:
+                ids.append(check)
 
         return ids
 
