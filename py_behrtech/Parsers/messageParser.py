@@ -47,7 +47,7 @@ class MessageParser(JSONParser, Defaults):
         messages = data.get("messages")
 
         for x in messages:
-            if x.get("command") == "rxData":
+            if x.get("command") == "ulData":
 
                 check = x.get("userDataJSON")
 
@@ -72,7 +72,7 @@ class MessageParser(JSONParser, Defaults):
         messages = data.get("messages")
 
         for x in messages:
-            if x.get("command") == "rxData":
+            if x.get("command") == "ulData":
 
                 check = x.get("userDataJSON")
 
@@ -131,7 +131,7 @@ class MessageParser(JSONParser, Defaults):
         messages = data.get("messages")
 
         for x in messages:
-            if x.get("command") == "rxData":
+            if x.get("command") == "ulData":
 
                 time = x.get("time")
 
@@ -153,7 +153,7 @@ class MessageParser(JSONParser, Defaults):
         messages = data.get("messages")
 
         for x in messages:
-            if x.get("command") == "rxData":
+            if x.get("command") == "ulData":
 
                 time = x.get("time")
 
@@ -181,7 +181,7 @@ class MessageParser(JSONParser, Defaults):
         for index, x in enumerate(messages):
             if index >= offset:
                 if amount != count:
-                    if x.get("command") == "rxData":
+                    if x.get("command") == "ulData":
 
                         check = x.get("userDataJSON")
 
@@ -216,7 +216,7 @@ class MessageParser(JSONParser, Defaults):
         messages = data.get("messages")
 
         for x in messages:
-            if x.get("command") == "rxData":
+            if x.get("command") == "ulData":
 
                 time = x.get("time")
 
@@ -287,7 +287,7 @@ class MessageParser(JSONParser, Defaults):
         messages = data.get("messages")
 
         for x in messages:
-            if x.get("command") == "rxData":
+            if x.get("command") == "ulData":
 
                 check_id = x.get("_id")
 
@@ -337,7 +337,7 @@ class MessageParser(JSONParser, Defaults):
         messages = data.get("messages")
 
         for x in messages:
-            if x.get("command") == "rxData":
+            if x.get("command") == "ulData":
 
                 check = x.get("epEui")
 
@@ -360,7 +360,7 @@ class MessageParser(JSONParser, Defaults):
         messages = data.get("messages")
 
         for x in messages:
-            if x.get("command") == "rxData":
+            if x.get("command") == "ulData":
 
                 check_eui = x.get("epEui")
 

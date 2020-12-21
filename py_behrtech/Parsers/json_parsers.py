@@ -11,7 +11,7 @@ class JSONParser:
 
     def get_rxData_messages(self) -> str:
         """
-        Sources all data of the class and returns only rxData messages as a json string
+        Sources all data of the class and returns only ulData messages as a json string
 
         :return: All sensor data for each message as a json string
         """
@@ -19,7 +19,7 @@ class JSONParser:
         data = json.loads(self.data)
         messages = data.get("messages")
 
-        remove = [x for x in messages if x.get("command") != "rxData"]
+        remove = [x for x in messages if x.get("command") != "ulData"]
 
         for rem in remove:
             messages.remove(rem)
