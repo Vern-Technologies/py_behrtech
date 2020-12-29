@@ -75,16 +75,16 @@ nodesPost | :x:
 ### Plugin
 EndPoint | Done
 :--- | :---
-pluginAcceptGet | :x:
+pluginAcceptGet | :white_check_mark:
 pluginAcceptPost | :x:
-pluginPluginNameArbitraryPathGet | :x:
-pluginPluginNameDelete | :x:
-pluginPluginNameGet | :x:
-pluginPluginNameMappingDelete | :x:
-pluginPluginNameMappingGet | :x:
-pluginPluginNameMappingPost | :x:
-pluginPluginNameMappingEpEuiDelete | :x:
-pluginRegisterGet | :x:
+pluginPluginNameArbitraryPathGet | :white_check_mark:
+pluginPluginNameDelete | :white_check_mark:
+pluginPluginNameGet | :white_check_mark:
+pluginPluginNameMappingDelete | :white_check_mark:
+pluginPluginNameMappingGet | :white_check_mark:
+pluginPluginNameMappingPost | :white_check_mark:
+pluginPluginNameMappingEpEuiDelete | :white_check_mark:
+pluginRegisterGet | :white_check_mark:
 
 ### Sensor Models
 EndPoint | Done
