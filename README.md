@@ -14,15 +14,15 @@ This package is a work in progress. Currently, working to get all API endpoints 
 ### Azure
 EndPoint | Done
 :--- | :---
-azurefunctionDelete | :x:
-azurefunctionFunctionIDDelete | :x:
-azurefunctionFunctionIDGet | :x:
-azurefunctionGet | :x:
+azurefunctionDelete | :white_check_mark:
+azurefunctionFunctionIDDelete | :white_check_mark:
+azurefunctionFunctionIDGet | :white_check_mark:
+azurefunctionGet | :white_check_mark:
 azurefunctionPost | :x:
-azurefunctionDelete | :x:
+azuremappingDelete | :white_check_mark:
 azuremappingGet | :white_check_mark:
-azuremappingMappingIDDelete | :x:
-azuremappingMappingIDGet | :x:
+azuremappingMappingIDDelete | :white_check_mark:
+azuremappingMappingIDGet | :white_check_mark:
 azuremappingPost | :x:
 
 ### Base Station

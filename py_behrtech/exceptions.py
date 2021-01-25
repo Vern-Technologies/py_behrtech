@@ -17,6 +17,9 @@ def check_status_code(req: Response):
         raise PermissionsError(status_code=403, message="User doesn't have the correct permissions to access this data")
     elif req.status_code == 404:
         raise QueryError(status_code=404, url=req.url, message="Endpoint is invalid or was built incorrectly")
+    elif req.status_code == 424:
+        raise DependencyError(status_code=424, message="The request could not be performed because the requested action"
+                                                       "depends on another action and that action failed.")
 
 
 class PyBehrtechException(Exception):
@@ -47,3 +50,11 @@ class QueryError(PyBehrtechException):
         self.status_code = status_code
         self.url = url
         PyBehrtechException.__init__(self, status_code, url, message)
+
+
+class DependencyError(PyBehrtechException):
+    """Failed dependency, the request could not be preformed"""
+
+    def __init__(self, status_code, message):
+        self.status_code = status_code
+        PyBehrtechException.__init__(self, status_code, message)

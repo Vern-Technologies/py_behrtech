@@ -47,15 +47,13 @@ class MessageParser(JSONParser, Defaults):
         messages = data.get("messages")
 
         for x in messages:
-            if x.get("command") == "ulData":
+            check = x.get("userDataJSON")
 
-                check = x.get("userDataJSON")
+            if check:
+                data = json.loads(check)
 
-                if check:
-                    data = json.loads(check)
-
-                    if "message" not in data.keys() and component in data.keys():
-                        component_data.append(data[component])
+                if "message" not in data.keys() and component in data.keys():
+                    component_data.append(data[component])
 
         return component_data
 
@@ -131,13 +129,11 @@ class MessageParser(JSONParser, Defaults):
         messages = data.get("messages")
 
         for x in messages:
-            if x.get("command") == "ulData":
+            time = x.get("time")
 
-                time = x.get("time")
-
-                if time:
-                    time_split = time.strip("Z").split("T")
-                    time_info.append({"date": time_split[0], "time": time_split[1]})
+            if time:
+                time_split = time.strip("Z").split("T")
+                time_info.append({"date": time_split[0], "time": time_split[1]})
 
         return time_info
 
@@ -153,14 +149,12 @@ class MessageParser(JSONParser, Defaults):
         messages = data.get("messages")
 
         for x in messages:
-            if x.get("command") == "ulData":
+            time = x.get("time")
 
-                time = x.get("time")
-
-                if time:
-                    time_split = time.strip("Z").split("T")
-                    new_time = f"{time_split[0]} {time_split[1]}"
-                    time_info.append(datetime.strptime(new_time, '%Y-%m-%d %H:%M:%S'))
+            if time:
+                time_split = time.strip("Z").split("T")
+                new_time = f"{time_split[0]} {time_split[1]}"
+                time_info.append(datetime.strptime(new_time, '%Y-%m-%d %H:%M:%S'))
 
         return time_info
 
