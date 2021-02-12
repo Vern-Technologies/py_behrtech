@@ -1,14 +1,13 @@
 
 ![publish-pypi](https://github.com/matthewashley1/Fetch_BehrTech/workflows/publish-pypi/badge.svg)
 
-# py_behrtech
+# py-behrtech
 
 A python wrapper for BehrTech's Mythings Central REST API. Currently, supporting version 3.1.0.
 
 ## Status:
 
 This package is a work in progress. Currently, working to get all API endpoints implemented with checks on each returned status code.
-
 
 ## Example:
 
@@ -133,6 +132,9 @@ userUUIDGet | :white_check_mark:
 userUUIDProfilePost | :white_check_mark:
 userUUIDResetPasswordPost | :white_check_mark:
  
+## PyPI
+Access [PyPI](https://pypi.org/project/py-behrtech/) project.
+
 ## License
 
-Fetch_BehrTech is released under the [MIT](https://opensource.org/licenses/MIT) license
+py-behrtech is released under the [MIT](https://opensource.org/licenses/MIT) license
