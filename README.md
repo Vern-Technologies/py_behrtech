@@ -5,11 +5,26 @@
 
 A python wrapper for BehrTech's Mythings Central REST API. Currently, supporting version 3.1.0.
 
-## Status
+## Status:
 
 This package is a work in progress. Currently, working to get all API endpoints implemented with checks on each returned status code.
 
-### Endpoints Check List
+
+## Example:
+
+Set up your call, which creates a connection to your gateway and request messages.
+
+```python
+from py_behrtech import Calls
+
+call = Calls(username='gateway_username', password='password for username', server_address='gateways IP address')
+
+messages = call.messagesGet(returnCount=10, offset=100, epEui='70B3D5C1F004112C')
+
+print(messages.getData())
+```
+
+## Endpoints Check List:
 
 ### Azure
 EndPoint | Done

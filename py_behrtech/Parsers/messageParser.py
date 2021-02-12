@@ -26,18 +26,11 @@ class MessageParser(JSONParser, Defaults):
         self.data: str = req.text
         self.count = getCount()
 
-    def get_message_count(self) -> int:
-        """
-        Returns the total count of messages
-
-        :return: The message count total
-        """
-
-        return json.loads(self.data).get("count")
-
     def get_component_data(self, component: str):
         """
         Sources all the data of the class to retrieve the data for a specified component for each message
+
+        Example: Temperature, Pressure, etc.
 
         :return: The data for a specified component for each message as a list
         """

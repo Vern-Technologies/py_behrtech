@@ -34,6 +34,7 @@ class Messages:
         """
         Returns messages from the gateway.
 
+        :rtype: MessageParser
         :param returnCount: Amount of messages to be requested. (-1 for all)
         :param offset: Message number to start the request from
         :param epEui: Unique epEui number of the node to be requested
