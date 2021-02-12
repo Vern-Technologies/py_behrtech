@@ -55,8 +55,10 @@ class User:
         :param name: Name of the user account
         :param email: Email for the user account
         :param admin: If user account is a admin
-        :param getMethodsOnly:
-        :return: Newly create user account information
+        :param getMethodsOnly: If user account is read only
+        :return: Newly created user account information
+
+        If admin is set to false and getMethodsOnly is set to true then you create a read only or guest account
         """
 
         req = requests.post(url=self.server_address + f"/v2/user", verify=False,

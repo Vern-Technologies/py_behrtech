@@ -27,6 +27,9 @@ class Plugins:
         else:
             check_status_code(req=req)
 
+    def pluginAcceptPost(self):
+        pass
+
     def pluginNameArbitraryPathGet(self, pluginName: str, arbitraryPath: str) -> dict:
         """
         Gets plugin provided endpoints. Every plugin provides its own endpoints
@@ -92,7 +95,7 @@ class Plugins:
         else:
             check_status_code(req=req)
 
-    def pluginNameMappingDelete(self, pluginName: str, deleteAll: bool) -> bool:
+    def pluginNameMappingDelete(self, pluginName: str, deleteAll: bool = False) -> bool:
         """
         Deletes all mappings for a plugin
 

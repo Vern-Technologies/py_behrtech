@@ -13,8 +13,21 @@ class Models:
         self.server_address = None
         self.jwt_token = None
 
-    def sensorModelsDelete(self):
-        pass
+    def sensorModelsDelete(self, deleteAll: bool = False) -> dict:
+        """
+        Deletes all sensor Models
+
+        :param deleteAll: Verifies deletion of all sensor models is on purpose
+        :return: Information on deleted sensor models
+        """
+
+        req = requests.delete(url=self.server_address + f"/v2/sensormodels?deleteAll={deleteAll}", verify=False,
+                              headers={"Authorization": f"Bearer {self.jwt_token}"})
+
+        if req.status_code == 200:
+            return req.json()
+        else:
+            check_status_code(req=req)
 
     def sensorModelsGet(self, returnCount: int = '', offset: int = '') -> ModelParser:
         """
@@ -36,8 +49,21 @@ class Models:
     def sensorModelsPost(self):
         pass
 
-    def sensorModelsSensorTypeDelete(self):
-        pass
+    def sensorModelsSensorTypeDelete(self, sensorType: str) -> bool:
+        """
+        Deletes the requested sensor model
+
+        :param sensorType: Unique sensor model type
+        :return: Bool if sensor model was deleted or not
+        """
+
+        req = requests.delete(url=self.server_address + f"/v2/sensormodels/{sensorType}", verify=False,
+                              headers={"Authorization": f"Bearer {self.jwt_token}"})
+
+        if req.status_code == 200:
+            return True
+        else:
+            check_status_code(req=req, messages={404: f"Sensor Model with {sensorType} not found"})
 
     def sensorModelsSensorTypeGet(self, sensorType: str) -> ModelParser:
         """

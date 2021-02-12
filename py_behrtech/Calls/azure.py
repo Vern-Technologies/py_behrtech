@@ -12,7 +12,7 @@ class Azure:
         self.server_address = None
         self.jwt_token = None
 
-    def azureFunctionDelete(self, deleteAll: bool) -> dict:
+    def azureFunctionDelete(self, deleteAll: bool = False) -> dict:
         """
         Deletes all Azure functions from the Service Center. Iterates over all existing functions, if a function still
         has mappings referred to it, the task will stop, resulting in some functions being deleted and some not.
@@ -79,7 +79,7 @@ class Azure:
         else:
             check_status_code(req=req)
 
-    def azureMappingDelete(self, deleteAll: bool) -> dict:
+    def azureMappingDelete(self, deleteAll: bool = False) -> dict:
         """
         Deletes all Azure mappings from the Service Center.
 

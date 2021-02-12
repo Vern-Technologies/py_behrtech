@@ -9,7 +9,7 @@ class JSONParser:
     def __init__(self):
         self.data = None
 
-    def get_rxData_messages(self) -> str:
+    def get_ulData_messages(self) -> str:
         """
         Sources all data of the class and returns only ulData messages as a json string
 

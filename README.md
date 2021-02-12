@@ -28,11 +28,11 @@ azuremappingPost | :x:
 ### Base Station
 EndPoint | Done
 :--- | :---
-systemBasestationBsEuiConfigGet | :x:
+systemBasestationBsEuiConfigGet | :white_check_mark:
 systemBasestationBsEuiConfigPost | :x:
-systemBasestationBsEuiDelete | :x:
-systemBasestationBsEuiGet | :x:
-systemBasestationBsEuiPost | :x:
+systemBasestationBsEuiDelete | :white_check_mark:
+systemBasestationBsEuiGet | :white_check_mark:
+systemBasestationBsEuiPost | :white_check_mark:
 
 ### MQTT
 EndPoint | Done
@@ -89,10 +89,10 @@ pluginRegisterGet | :white_check_mark:
 ### Sensor Models
 EndPoint | Done
 :--- | :---
-sensormodelsDelete | :x:
+sensormodelsDelete | :white_check_mark:
 sensormodelsGet | :white_check_mark:
 sensormodelsPost | :x:
-sensormodelsSensorTypeDelete | :x:
+sensormodelsSensorTypeDelete | :white_check_mark:
 sensormodelsSensorTypeGet | :white_check_mark:
 sensormodelsSensorTypePost | :x:
 
@@ -100,9 +100,9 @@ sensormodelsSensorTypePost | :x:
 EndPoint | Done
 :--- | :---
 authTicketGet | :white_check_mark:
-systemDatabasedumpGet | :x:
-systemDatabasedumpIdDelete | :x:
-systemDatabasedumpIdGet | :x:
+systemDatabasedumpGet | :white_check_mark:
+systemDatabasedumpIdDelete | :white_check_mark:
+systemDatabasedumpIdGet | :white_check_mark:
 systemEulaGet | :white_check_mark:
 systemGet | :white_check_mark:
 wsGet | :white_check_mark:
