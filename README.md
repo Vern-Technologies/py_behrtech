@@ -51,16 +51,16 @@ systemBasestationBsEuiPost | :white_check_mark:
 ### MQTT
 EndPoint | Done
 :--- | :---
-brokerBrokerIDDelete | :x:
+brokerBrokerIDDelete | :white_check_mark:
 brokerBrokerIDGet | :white_check_mark:
 brokerBrokerIDPost | :x:
-brokerDelete | :x:
+brokerDelete | :white_check_mark:
 brokerGet | :white_check_mark:
 brokerPost | :x:
-mqttmappingDelete | :x:
+mqttmappingDelete | :white_check_mark:
 mqttmappingGet | :white_check_mark:
 mqttmappingPost | :x:
-mqttmappingMappingIDDelete | :x:
+mqttmappingMappingIDDelete | :white_check_mark:
 mqttmappingMappingIDGet | :white_check_mark:
 
 ### Messages
@@ -73,13 +73,13 @@ messagesPost | :x:
 ### Nodes
 EndPoint | Done
 :--- | :---
-nodesDelete | :x:
-nodesEpEuiDelete | :x:
+nodesDelete | :white_check_mark:
+nodesEpEuiDelete | :white_check_mark:
 nodesEpEuiGet | :white_check_mark:
 nodesEpEuiPost | :x:
-nodesEpEuiTxdataDelete | :x:
+nodesEpEuiTxdataDelete | :white_check_mark:
 nodesEpEuiTxdataGet | :white_check_mark:
-nodesEPEuiTxdataIdDelete | :x:
+nodesEPEuiTxdataIdDelete | :white_check_mark:
 nodesEpEuiTxdataIdGet | :white_check_mark:
 nodesEpEuiTxdataIdPost   | :x:
 nodesEpEuiTxdataPost | :x:
