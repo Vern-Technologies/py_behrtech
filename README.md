@@ -5,11 +5,11 @@
 
 A python wrapper for BehrTech's Mythings Central REST API. Currently, supporting version 3.1.0.
 
-## Status:
+## Status
 
 This package is a work in progress. Currently, working to get all API endpoints implemented with checks on each returned status code.
 
-## Example:
+## Example
 
 Set up your call, which creates a connection to your gateway and request messages.
 
