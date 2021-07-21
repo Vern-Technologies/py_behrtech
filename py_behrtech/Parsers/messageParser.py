@@ -8,7 +8,7 @@ from .json_parsers import JSONParser
 from py_behrtech.Parsers.defaults import Defaults
 
 
-class MessageParser(JSONParser, Defaults):
+class MessageParser(Defaults, JSONParser):
     """
     Is the base class for breaking data returned from a gateway computer from BehrTech into usable components. Provides
     stander functions that apply to all sensor types connected to a gateway.

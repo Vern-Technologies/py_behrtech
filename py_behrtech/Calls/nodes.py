@@ -1,7 +1,7 @@
 import requests
 
 from py_behrtech.exceptions import check_status_code
-from py_behrtech.Calls.functions import buildParameter
+from py_behrtech.functions import buildParameter
 from py_behrtech.Parsers.nodeParser import NodeParser
 
 

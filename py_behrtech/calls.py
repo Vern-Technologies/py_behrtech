@@ -15,7 +15,7 @@ class Calls(Azure, BaseStation, Messages, Models, Mqtt, Nodes, Plugins, System, 
         :param password: User account password
         :param server_address: The IP address of the gateway to be accessed. Either the static or DHCP address.
 
-        Example: Calls(username='matthew.ashley@cgf-llc.com', password='12345', server_address='117.122.1.27')
+        Example: Calls(username='jeffbills@yahoo.com', password='12345', server_address='117.122.1.27')
         """
 
         Azure.__init__(self)
